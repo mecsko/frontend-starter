@@ -53,7 +53,7 @@
         <q-input v-model="r.description" label="Description" outlined type="textarea" />
         <q-input v-model="r.dateOfAd" label="Date of ad" outlined type="date" />
         <div class="row justify-end">
-          <q-toggle v-model="r.undamaged" label="Undamaged" />
+          <q-checkbox v-model="r.undamaged" label="Undamaged" />
         </div>
         <q-input v-model="r.price" label="Price" outlined type="number" />
         <q-input v-model="r.picture" label="Picture" outlined type="url" />

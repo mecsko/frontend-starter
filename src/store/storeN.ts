@@ -84,7 +84,6 @@ export const useStoreN = defineStore({
         })
         .then((res) => {
           if (res && res.data) {
-            Dialog.create({ title: "Message", message: "Document saved!" });
             router.push({ name: "grid" });
           }
         })

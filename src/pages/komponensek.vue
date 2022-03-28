@@ -2,7 +2,13 @@
 
 <template>
   <q-page>
-    <div class="q-pa-md q-gutter-x-sm">
+    <div class="column q-pa-md q-gutter-x-sm">
+      <q-btn
+        href="https://quasar.dev/layout/grid/introduction-to-flexbox"
+        icon="mdi-format-align-center"
+        label="Flexbox"
+        target="_blank"
+      />
       <q-btn
         href="https://quasar.dev/vue-components/badge"
         icon="mdi-police-badge-outline"
@@ -46,9 +52,15 @@
         target="_blank"
       />
       <q-btn
-        href="https://quasar.dev/vue-components/toggle"
-        icon="mdi-toggle-switch"
-        label="Toggle"
+        href="https://quasar.dev/vue-components/checkbox"
+        icon="mdi-checkbox-outline"
+        label="Checkbox"
+        target="_blank"
+      />
+      <q-btn
+        href="https://quasar.dev/vue-components/radio"
+        icon="mdi-radiobox-marked"
+        label="Radio"
         target="_blank"
       />
       <q-btn
