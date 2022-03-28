@@ -159,6 +159,36 @@
       "undamaged": true,
       "price": 26950000,
       "picture": "http://elit.jedlik.eu/nits/hahu/19.jpg"
+    },
+    {
+      "categoryId": 2,
+      "title": "sgdsfg",
+      "description": "dgdfgdf",
+      "dateOfAd": "2022-03-29",
+      "undamaged": false,
+      "price": "0345634534",
+      "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg",
+      "id": 20
+    },
+    {
+      "categoryId": 7,
+      "title": "ghjghjg",
+      "description": "fjhfgj",
+      "dateOfAd": "2022-03-29",
+      "undamaged": false,
+      "price": "222222",
+      "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg",
+      "id": 21
+    },
+    {
+      "categoryId": 2,
+      "title": "ertre",
+      "description": "ertet",
+      "dateOfAd": "2022-03-29",
+      "undamaged": false,
+      "price": "055555",
+      "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg",
+      "id": 22
     }
   ],
   "categories": [

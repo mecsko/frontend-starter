@@ -6,7 +6,7 @@
 
   const leftDrawerOpen = ref<boolean>(true);
   const toolbarShow = ref<boolean>(true);
-  const hiddenPages = ref<string[]>(["hidden_index"]);
+  const hiddenPages = ref<string[]>(["répa", "körte"]);
 
   function toggleLeftDrawer(): void {
     leftDrawerOpen.value = !leftDrawerOpen.value;

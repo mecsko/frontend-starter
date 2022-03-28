@@ -1,6 +1,7 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
 import { Dialog } from "quasar";
+import router from "src/router";
 
 interface IFields {
   id: number;
@@ -84,6 +85,7 @@ export const useStoreN = defineStore({
         .then((res) => {
           if (res && res.data) {
             Dialog.create({ title: "Message", message: "Document saved!" });
+            router.push({ name: "grid" });
           }
         })
         .catch((error) => {
