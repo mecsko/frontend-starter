@@ -1,0 +1,5 @@
+{
+  "/advertisements2": "/advertisements?_expand=category",
+  "/api/advertisements2": "/advertisements?_expand=category",
+  "/api/*": "/$1"
+}

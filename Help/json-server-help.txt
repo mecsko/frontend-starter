@@ -1,0 +1,47 @@
+Névkonvenciók táblák összekapcsolásához:
+{
+  "advertisements": [
+    {
+      "id": 1,
+      "categoryId": 2,
+      "title": "Renault Trafic 1.9 dCi",
+      "description": "A HŰTŐ HIBÁTLANUL...",
+      "dateOfAd": "2022-02-21T00:00:00.000Z",
+      "undamaged": true,
+      "price": 999999,
+      "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Személyautó"
+    }
+  ]
+}
+
+N-oldali tábla neve angol, többesszámmal: advertisements
+1-oldali tábla neve angol, többesszámmal: categories
+Elsődleges kulcs mindkét oldalon: id
+Idegen kulcs az N oldalon, egyesszámban az 1 oldali tábla neve + Id alakú, pl.: categoryId
+
+Összekapcsolás:
+GET http://localhost:3000/N-oldali-tábla-neve?_expand=1-oldali-tábla-neve-egyesszámban
+
+Bevezető péda szerint: GET http://localhost:3000/advertisements?_expand=category
+
+Eredmény:
+{
+    "id": 1,
+    "categoryId": 2,
+    "title": "Renault Trafic 1.9 dCi L1H2 Business",
+    "description": "A HŰTŐ HIBÁTLANUL...",
+    "dateOfAd": "2022-02-21T00:00:00.000Z",
+    "undamaged": true,
+    "price": 999999,
+    "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg",
+    "category": {
+      "id": 2,
+      "name": "Kishaszonjármű"
+    }
+}
