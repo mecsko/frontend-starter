@@ -14,30 +14,30 @@
   }
 
   const columns: any[] = [
-    { name: "id", label: "id", field: "id", sortable: true },
+    { name: "c1", label: "id", field: "id", sortable: true },
     {
-      name: "category",
+      name: "c2",
       label: "Category",
       field: (row: any) => row.category.name,
       sortable: true,
       align: "center",
     },
-    { name: "title", label: "Title", field: "title", sortable: true, align: "left" },
+    { name: "c3", label: "Title", field: "title", sortable: true, align: "left" },
     {
-      name: "decription",
+      name: "c4",
       label: "Description",
       field: "description",
       sortable: true,
       align: "left",
     },
     {
-      name: "undamaged",
+      name: "c5",
       label: "Undamaged",
       field: "undamaged",
       sortable: true,
       align: "center",
     },
-    { name: "picture", label: "Picture", field: "picture", sortable: true, align: "center" },
+    { name: "c6", label: "Picture", field: "picture", sortable: true, align: "center" },
   ];
 </script>
 
@@ -53,14 +53,14 @@
         title="Advertisements"
         wrap-cells
       >
-        <template #body-cell-undamaged="props">
+        <template #body-cell-c5="props">
           <q-td :props="props">
             <q-badge v-if="props.value" color="green" label="Yes" outline />
             <q-badge v-else color="red" label="No" outline />
           </q-td>
         </template>
 
-        <template #body-cell-picture="props">
+        <template #body-cell-c6="props">
           <q-td :props="props">
             <img :src="props.value" style="max-height: 100px" />
           </q-td>
