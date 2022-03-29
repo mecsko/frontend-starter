@@ -1,6 +1,6 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
-import { Dialog } from "quasar";
+// import { Dialog } from "quasar";
 
 interface IFields {
   id: number;
@@ -8,12 +8,14 @@ interface IFields {
 }
 
 interface IState {
+  errormsg: string;
   data1: Array<IFields>;
 }
 
 export const useStore1 = defineStore({
   id: "store1",
   state: (): IState => ({
+    errormsg: "",
     data1: [],
   }),
   getters: {},
@@ -23,11 +25,13 @@ export const useStore1 = defineStore({
         .get("api/categories")
         .then((res) => {
           if (res && res.data) {
+            this.errormsg = "";
             this.data1 = res.data;
           }
         })
         .catch((error) => {
-          Dialog.create({ title: "Error", message: error.message });
+          // Dialog.create({ title: "Error", message: error.message });
+          this.errormsg = error.message;
         });
     },
   },

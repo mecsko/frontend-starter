@@ -229,6 +229,16 @@
       "price": "1",
       "picture": "http://elit.jedlik.eu/nits/hahu/01.jpg",
       "id": 26
+    },
+    {
+      "categoryId": 2,
+      "title": "qw",
+      "description": "wq",
+      "dateOfAd": "2022-03-19",
+      "undamaged": false,
+      "price": "434",
+      "picture": "http://elit34.jedlik.eu/nits/hahu/01.jpg",
+      "id": 27
     }
   ],
   "categories": [

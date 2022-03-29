@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
-  import { Dialog, date } from "quasar";
+  import { date } from "quasar";
   const storeN = useStoreN();
   const store1 = useStore1();
 
   const r = reactive({
-    category: null,
+    category: { value: null, label: "Válasszon!" },
     title: "",
     description: "",
     dateOfAd: date.formatDate(new Date(), "YYYY-MM-DD"),
@@ -21,26 +21,28 @@
 
   function Submit() {
     if (r.title == "" || r.description == "" || r.dateOfAd == "" || r.price == 0) {
-      Dialog.create({ title: "Error", message: "Please fill in all fields!" });
+      storeN.errormsg = "Please fill in all fields!";
+      // Dialog.create({ title: "Error", message: "Please fill in all fields!" });
     } else storeN.create(r);
   }
 
   function Reset() {
-    r.category = null;
+    r.category = { value: null, label: "Válasszon!" };
     r.title = "";
     r.description = "";
     r.dateOfAd = date.formatDate(new Date(), "YYYY-MM-DD");
     r.undamaged = false;
     r.price = 0;
     r.picture = "http://elit.jedlik.eu/nits/hahu/01.jpg";
+    storeN.errormsg = "";
   }
 </script>
 
 <template>
   <q-page>
-    <div class="row justify-center content-center" style="height: 100vh">
+    <div class="row justify-center content-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-y-md">
-        <h5 class="q-ma-none text-center">Add new advertisement</h5>
+        <h5 class="text-center q-mt-xl">Add new advertisement</h5>
         <q-select
           v-model="r.category"
           clearable
@@ -61,6 +63,12 @@
           <q-btn class="q-mr-md" color="green" label="Submit" no-caps @click="Submit" />
           <q-btn color="red" label="Reset" no-caps @click="Reset" />
         </div>
+        <q-banner v-if="storeN.errormsg != ''" class="text-white bg-red" inline-actions rounded>
+          <span>{{ storeN.errormsg }}</span>
+          <template #action>
+            <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
+          </template>
+        </q-banner>
       </div>
     </div>
   </q-page>

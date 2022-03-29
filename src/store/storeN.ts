@@ -1,6 +1,6 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
-import { Dialog } from "quasar";
+// import { Dialog } from "quasar";
 import router from "src/router";
 
 interface IFields {
@@ -19,12 +19,14 @@ interface IFields {
 }
 
 interface IState {
+  errormsg: string;
   dataN: Array<IFields>;
 }
 
 export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
+    errormsg: "",
     dataN: [],
   }),
   getters: {},
@@ -34,11 +36,13 @@ export const useStoreN = defineStore({
         .get("api/advertisements2")
         .then((res) => {
           if (res && res.data) {
+            this.errormsg = "";
             this.dataN = res.data;
           }
         })
         .catch((error) => {
-          Dialog.create({ title: "Error", message: error.message });
+          // Dialog.create({ title: "Error", message: error.message });
+          this.errormsg = error.message;
         });
     },
     async editPostById(params: any): Promise<void> {
@@ -54,21 +58,25 @@ export const useStoreN = defineStore({
         })
         .then((res) => {
           if (res && res.data) {
+            this.errormsg = "";
             this.getAll();
           }
         })
         .catch((error) => {
-          Dialog.create({ title: "Error", message: error.message });
+          this.errormsg = error.message;
+          // Dialog.create({ title: "Error", message: error.message });
         });
     },
     async deleteById(params: any): Promise<void> {
       $axios
         .delete(`api/advertisements/${params.id}`)
         .then(() => {
+          this.errormsg = "";
           this.getAll();
         })
         .catch((error) => {
-          Dialog.create({ title: "Error", message: error.message });
+          this.errormsg = error.message;
+          // Dialog.create({ title: "Error", message: error.message });
         });
     },
     async create(params: any): Promise<void> {
@@ -84,11 +92,13 @@ export const useStoreN = defineStore({
         })
         .then((res) => {
           if (res && res.data) {
+            this.errormsg = "";
             router.push({ name: "grid" });
           }
         })
         .catch((error) => {
-          Dialog.create({ title: "Error", message: error.message });
+          this.errormsg = error.message;
+          // Dialog.create({ title: "Error", message: error.message });
         });
     },
   },
