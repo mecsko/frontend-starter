@@ -1,4 +1,5 @@
-Névkonvenciók táblák összekapcsolásához:
+Json-server - Névkonvenciók táblák összekapcsolásához:
+======================================================
 {
   "advertisements": [
     {
@@ -20,17 +21,19 @@ Névkonvenciók táblák összekapcsolásához:
   ]
 }
 
-N-oldali tábla neve angol, többesszámmal: advertisements
-1-oldali tábla neve angol, többesszámmal: categories
+N-oldali tábla neve angolul, többesszámmal, pl.: advertisements
+1-oldali tábla neve angolul, többesszámmal. pl.: categories
 Elsődleges kulcs mindkét oldalon: id
 Idegen kulcs az N oldalon, egyesszámban az 1 oldali tábla neve + Id alakú, pl.: categoryId
 
 Összekapcsolás:
+================
+
 GET http://localhost:3000/N-oldali-tábla-neve?_expand=1-oldali-tábla-neve-egyesszámban
 
 Bevezető péda szerint: GET http://localhost:3000/advertisements?_expand=category
 
-Eredmény:
+JSON Válasz:
 {
     "id": 1,
     "categoryId": 2,
