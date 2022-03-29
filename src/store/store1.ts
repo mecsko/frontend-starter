@@ -8,14 +8,14 @@ interface IFields {
 }
 
 interface IState {
-  errormsg: string;
+  errormsg: string | null;
   data1: Array<IFields>;
 }
 
 export const useStore1 = defineStore({
   id: "store1",
   state: (): IState => ({
-    errormsg: "",
+    errormsg: null,
     data1: [],
   }),
   getters: {},
@@ -25,7 +25,7 @@ export const useStore1 = defineStore({
         .get("api/categories")
         .then((res) => {
           if (res && res.data) {
-            this.errormsg = "";
+            this.errormsg = null;
             this.data1 = res.data;
           }
         })

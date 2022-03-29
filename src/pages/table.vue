@@ -47,6 +47,7 @@
       <q-table
         v-model:selected="selected"
         :columns="columns"
+        dense
         :rows="storeN.dataN"
         selection="single"
         title="Advertisements"
@@ -65,7 +66,7 @@
           </q-td>
         </template>
       </q-table>
-      <div class="column flex-center q-ma-md">
+      <div class="row justify-center q-ma-md">
         <q-btn
           v-show="selected.length != 0"
           color="red"

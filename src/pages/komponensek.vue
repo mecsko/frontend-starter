@@ -34,6 +34,18 @@
         target="_blank"
       />
       <q-btn
+        href="https://quasar.dev/vue-components/carousel"
+        icon="mdi-view-carousel-outline"
+        label="Carousel"
+        target="_blank"
+      />
+      <q-btn
+        href="https://quasar.dev/vue-components/checkbox"
+        icon="mdi-checkbox-outline"
+        label="Checkbox"
+        target="_blank"
+      />
+      <q-btn
         href="https://quasar.dev/vue-components/img"
         icon="mdi-camera-image"
         label="Img"
@@ -55,12 +67,6 @@
         href="https://quasar.dev/vue-components/table"
         icon="mdi-table-large"
         label="Table"
-        target="_blank"
-      />
-      <q-btn
-        href="https://quasar.dev/vue-components/checkbox"
-        icon="mdi-checkbox-outline"
-        label="Checkbox"
         target="_blank"
       />
       <q-btn

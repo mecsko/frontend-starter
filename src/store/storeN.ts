@@ -19,14 +19,14 @@ interface IFields {
 }
 
 interface IState {
-  errormsg: string;
+  errormsg: string | null;
   dataN: Array<IFields>;
 }
 
 export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
-    errormsg: "",
+    errormsg: null,
     dataN: [],
   }),
   getters: {},
@@ -36,7 +36,7 @@ export const useStoreN = defineStore({
         .get("api/advertisements2")
         .then((res) => {
           if (res && res.data) {
-            this.errormsg = "";
+            this.errormsg = null;
             this.dataN = res.data;
           }
         })
@@ -58,7 +58,7 @@ export const useStoreN = defineStore({
         })
         .then((res) => {
           if (res && res.data) {
-            this.errormsg = "";
+            this.errormsg = null;
             this.getAll();
           }
         })
@@ -71,7 +71,7 @@ export const useStoreN = defineStore({
       $axios
         .delete(`api/advertisements/${params.id}`)
         .then(() => {
-          this.errormsg = "";
+          this.errormsg = null;
           this.getAll();
         })
         .catch((error) => {
@@ -92,7 +92,7 @@ export const useStoreN = defineStore({
         })
         .then((res) => {
           if (res && res.data) {
-            this.errormsg = "";
+            this.errormsg = null;
             router.push({ name: "grid" });
           }
         })
