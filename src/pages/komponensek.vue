@@ -16,6 +16,12 @@
         target="_blank"
       />
       <q-btn
+        href="https://quasar.dev/vue-components/banner"
+        icon="mdi-alpha-b-box-outline"
+        label="Banner"
+        target="_blank"
+      />
+      <q-btn
         href="https://quasar.dev/vue-components/button"
         icon="mdi-gesture-tap-button"
         label="Button"
