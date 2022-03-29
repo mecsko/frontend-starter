@@ -21,7 +21,7 @@
           </q-img>
           <q-card-section>
             <q-badge v-if="e.undamaged" color="green" label="Undamaged!" outline />
-            <q-badge v-else color="red" label="Damaed!" outline />
+            <q-badge v-else color="red" label="Damaged!" outline />
             {{ e.description }}
           </q-card-section>
           <q-card-actions align="center">

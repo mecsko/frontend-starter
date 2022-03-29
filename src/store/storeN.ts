@@ -93,7 +93,7 @@ export const useStoreN = defineStore({
         .then((res) => {
           if (res && res.data) {
             this.errormsg = null;
-            router.push({ name: "grid" });
+            router.push({ name: "xgrid" });
           }
         })
         .catch((error) => {
