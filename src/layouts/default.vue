@@ -21,7 +21,7 @@
 </script>
 
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh Lpr fFf">
     <q-header v-if="toolbarShow" class="bg-primary text-white text-left" elevated>
       <q-toolbar>
         <q-btn dense flat icon="mdi-menu" round @click="toggleLeftDrawer" />
@@ -34,7 +34,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" bordered show-if-above side="left">
+    <q-drawer v-model="leftDrawerOpen" bordered show-if-above side="left" :width="150">
       <q-list bordered class="min-w-25 pa-4" separator>
         <template v-for="(item, index) in generatedRoutes">
           <q-item
