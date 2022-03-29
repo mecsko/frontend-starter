@@ -1,6 +1,6 @@
 1. Backend szerver - Base URL és port beállítása: src/store/axios.instance.ts
 2. "1"-oldali store IFields interface és axios URL aktualizálása: src/store/store1.ts
 3. "N"-oldali store IFields interface és actions metódusok aktualizálása: src/store/storeN.ts
-4. Komponensek (oldalak) elkészítése (meglévők átalakítása): src/pages mappában
+4. Komponensek (oldalak) elkészítése (save as): src/pages mappában
 5. Nyitó oldal elkészítése: src/pages/index.vue
 6. Menük kikapcsolása: leftDrawerOpen, toolbarShow: src/layouts/default.vue
