@@ -42,8 +42,8 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-y-sm">
-        <h5 class="text-center q-ma-md">Add new advertisement</h5>
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-md">
+        <h5 class="text-center q-mt-lg q-mb-none">Add new advertisement</h5>
         <q-select
           v-model="r.category"
           clearable

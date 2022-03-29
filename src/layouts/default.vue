@@ -27,7 +27,7 @@
         <q-btn dense flat icon="mdi-menu" round @click="toggleLeftDrawer" />
         <q-toolbar-title id="title" style="cursor: pointer" @click="router.push({ path: '/' })">
           <q-avatar>
-            <img src="src/assets/img/Jedlik_small.png" />
+            <img src="src/assets/Jedlik_small.png" />
           </q-avatar>
           Szoftverfejlesztő és tesztelő vizsga - Frontend programozási feladat
         </q-toolbar-title>

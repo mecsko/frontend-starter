@@ -8,7 +8,7 @@ import Layouts from "vite-plugin-vue-layouts";
 export default defineConfig({
   plugins: [
     vue({ template: { transformAssetUrls } }),
-    quasar({ sassVariables: "src/assets/style/quasar-variables.sass" }),
+    quasar({ sassVariables: "src/assets/quasar-variables.sass" }),
     Pages({
       nuxtStyle: true,
       dirs: [
@@ -24,18 +24,6 @@ export default defineConfig({
       "~": resolve(__dirname, "src"),
     },
   },
-  // server: {
-  //   https: false,
-  //   port: 3001,
-  //   proxy: {
-  //     "/api": {
-  //       target: "http://localhost:8600",
-  //       changeOrigin: true,
-  //       secure: false,
-  //       rewrite: (path) => path.replace(/^\/api/, ""),
-  //     },
-  //   },
-  // },
   define: {
     "process.env": {},
   },
