@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 
 interface IFields {
   id: number;
-  name: string;
+  nameField: string;
 }
 
 interface IState {

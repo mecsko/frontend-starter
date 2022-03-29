@@ -13,31 +13,39 @@
     selected.value = [];
   }
 
+  //  if JSON-server return with object type field:
+  // field: (row: any) => row.category.nameField,
   const columns: any[] = [
-    { name: "c1", label: "id", field: "id", sortable: true },
+    { name: "id", label: "id", field: "id", sortable: false },
     {
-      name: "c2",
-      label: "Category",
-      field: (row: any) => row.category.name,
+      name: "category",
+      label: "category",
+      field: (row: any) => row.category.nameField,
       sortable: true,
       align: "center",
     },
-    { name: "c3", label: "Title", field: "title", sortable: true, align: "left" },
+    { name: "titleField", label: "titleField", field: "titleField", sortable: true, align: "left" },
     {
-      name: "c4",
-      label: "Description",
-      field: "description",
+      name: "descriptionField",
+      label: "descriptionField",
+      field: "descriptionField",
       sortable: true,
       align: "left",
     },
     {
-      name: "c5",
-      label: "Undamaged",
-      field: "undamaged",
+      name: "undamagedField",
+      label: "undamagedField",
+      field: "undamagedField",
       sortable: true,
       align: "center",
     },
-    { name: "c6", label: "Picture", field: "picture", sortable: true, align: "center" },
+    {
+      name: "pictureField",
+      label: "pictureField",
+      field: "pictureField",
+      sortable: true,
+      align: "center",
+    },
   ];
 </script>
 
@@ -53,14 +61,14 @@
         title="Advertisements"
         wrap-cells
       >
-        <template #body-cell-c5="props">
+        <template #body-cell-undamagedField="props">
           <q-td :props="props">
             <q-badge v-if="props.value" color="green" label="Yes" outline />
             <q-badge v-else color="red" label="No" outline />
           </q-td>
         </template>
 
-        <template #body-cell-c6="props">
+        <template #body-cell-pictureField="props">
           <q-td :props="props">
             <img :src="props.value" style="max-height: 100px" />
           </q-td>

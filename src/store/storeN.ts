@@ -4,17 +4,18 @@ import { defineStore } from "pinia";
 import router from "src/router";
 
 interface IFields {
-  id: number;
-  categoryId: number;
-  title: string;
-  description: string;
-  dateOfAd: string;
-  undamaged: boolean;
-  price: number;
-  picture: string;
+  id: number; // PK
+  categoryId: number; // FK
+  titleField: string;
+  descriptionField: string;
+  dateOfAdField: string;
+  undamagedField: boolean;
+  priceField: number;
+  pictureField: string;
+  // JSON-server "expand" data as object from "1"-side:
   category: {
     id: number;
-    name: string;
+    nameField: string;
   };
 }
 
@@ -49,12 +50,12 @@ export const useStoreN = defineStore({
       $axios
         .put(`api/advertisements/${params.id}`, {
           categoryId: params.category.value,
-          title: params.title,
-          description: params.description,
-          dateOfAd: params.dateOfAd,
-          undamaged: params.undamaged,
-          price: params.price,
-          picture: params.picture,
+          titleField: params.titleField,
+          descriptionField: params.descriptionField,
+          dateOfAdField: params.dateOfAdField,
+          undamagedField: params.undamagedField,
+          priceField: params.priceField,
+          pictureField: params.pictureField,
         })
         .then((res) => {
           if (res && res.data) {
@@ -83,12 +84,12 @@ export const useStoreN = defineStore({
       $axios
         .post("api/advertisements", {
           categoryId: params.category.value,
-          title: params.title,
-          description: params.description,
-          dateOfAd: params.dateOfAd,
-          undamaged: params.undamaged,
-          price: params.price,
-          picture: params.picture,
+          titleField: params.titleField,
+          descriptionField: params.descriptionField,
+          dateOfAdField: params.dateOfAdField,
+          undamagedField: params.undamagedField,
+          priceField: params.priceField,
+          pictureField: params.pictureField,
         })
         .then((res) => {
           if (res && res.data) {
