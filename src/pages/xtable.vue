@@ -13,7 +13,7 @@
     selected.value = [];
   }
 
-  //  if JSON-server return with object type field:
+  //  if JSON-server return field with object type:
   // field: (row: any) => row.category.nameField,
   const columns: any[] = [
     { name: "id", label: "id", field: "id", sortable: false },
@@ -74,6 +74,7 @@
           </q-td>
         </template>
       </q-table>
+      <!-- Button for delete selected record: -->
       <div class="row justify-center q-ma-md">
         <q-btn
           v-show="selected.length != 0"

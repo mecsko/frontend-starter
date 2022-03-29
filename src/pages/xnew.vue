@@ -76,6 +76,7 @@
           <q-btn color="red" label="Reset" no-caps @click="Reset" />
         </div>
 
+        <!-- Show/hide error message in a banner: -->
         <div class="row justify-center absolute-bottom">
           <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
             <span>{{ storeN.errormsg }}</span>
