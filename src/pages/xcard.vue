@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import router from "src/router";
   import { useStoreN } from "../store/storeN";
 
   const storeN = useStoreN();
@@ -6,6 +7,10 @@
   onMounted(() => {
     storeN.getAll();
   });
+
+  function edit(id: number) {
+    router.push({ name: "xedit", params: { id: id } });
+  }
 </script>
 
 <template>
@@ -15,8 +20,8 @@
         <q-card class="q-ma-md">
           <q-img :src="e.imgField">
             <div class="text-h7 absolute-top text-right">
-              {{ e.category.nameField }} -
-              {{ new Date(e.dateField).toLocaleDateString() }}
+              {{ e.category!.nameField }} -
+              {{ new Date(e.dateField!).toLocaleDateString() }}
             </div>
           </q-img>
           <q-card-section>
@@ -25,7 +30,7 @@
             {{ e.descField }}
           </q-card-section>
           <q-card-actions align="center">
-            <q-btn color="blue">I'm interested</q-btn>
+            <q-btn color="blue" @click="edit(e.id!)">Edit</q-btn>
           </q-card-actions>
         </q-card>
       </div>
