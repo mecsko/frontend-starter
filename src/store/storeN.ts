@@ -17,7 +17,7 @@ interface IFields {
   category?: {
     id?: number;
     nameField?: string;
-  };
+  } | null;
 }
 
 interface IState {

@@ -6,9 +6,11 @@
   const store1 = useStore1();
 
   storeN.data = {
-    titleField: "sa",
+    titleField: "",
     descField: "",
     dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
+    boolField: false,
+    category: null,
   };
 
   // const r = reactive({
