@@ -3,4 +3,4 @@
 3. "N"-oldali store IFields interface és actions metódusok aktualizálása: src/store/storeN.ts
 4. Komponensek (oldalak) elkészítése (save as): src/pages mappában
 5. Nyitó oldal elkészítése: src/pages/index.vue
-6. Menük kikapcsolása: leftDrawerOpen, toolbarShow: src/layouts/default.vue
+6. Menük kikapcsolása igény szerint: leftDrawerOpen, toolbarShow: src/layouts/default.vue

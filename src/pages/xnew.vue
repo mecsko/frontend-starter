@@ -8,11 +8,11 @@
   const r = reactive({
     category: { value: null, label: "Please choose!" },
     titleField: "",
-    descriptionField: "",
-    dateOfAdField: date.formatDate(new Date(), "YYYY-MM-DD"),
-    undamagedField: false,
+    descField: "",
+    dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
+    boolField: false,
     priceField: 0,
-    pictureField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
+    imgField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
   });
 
   onMounted(() => {
@@ -20,12 +20,7 @@
   });
 
   function Submit() {
-    if (
-      r.titleField == "" ||
-      r.descriptionField == "" ||
-      r.dateOfAdField == "" ||
-      r.priceField == 0
-    ) {
+    if (r.titleField == "" || r.descField == "" || r.dateField == "" || r.priceField == 0) {
       storeN.errormsg = "Please fill in all fields!";
       // Dialog.create({ titleField: "Error", message: "Please fill in all fields!" });
     } else storeN.create(r);
@@ -35,11 +30,11 @@
   function Reset() {
     r.category = { value: null, label: "Válasszon!" };
     r.titleField = "";
-    r.descriptionField = "";
-    r.dateOfAdField = date.formatDate(new Date(), "YYYY-MM-DD");
-    r.undamagedField = false;
+    r.descField = "";
+    r.dateField = date.formatDate(new Date(), "YYYY-MM-DD");
+    r.boolField = false;
     r.priceField = 0;
-    r.pictureField = "http://elit.jedlik.eu/nits/hahu/01.jpg";
+    r.imgField = "http://elit.jedlik.eu/nits/hahu/01.jpg";
     storeN.errormsg = "";
   }
 </script>
@@ -58,19 +53,13 @@
           outlined
         />
         <q-input v-model="r.titleField" dense label="titleField" outlined type="text" />
-        <q-input
-          v-model="r.descriptionField"
-          dense
-          label="descriptionField"
-          outlined
-          type="textarea"
-        />
-        <q-input v-model="r.dateOfAdField" dense label="Date of ad" outlined type="date" />
+        <q-input v-model="r.descField" dense label="descField" outlined type="textarea" />
+        <q-input v-model="r.dateField" dense label="Date of ad" outlined type="date" />
         <div class="row justify-end">
-          <q-checkbox v-model="r.undamagedField" dense label="undamagedField" />
+          <q-checkbox v-model="r.boolField" dense label="boolField" />
         </div>
         <q-input v-model="r.priceField" label="priceField" outlined type="number" />
-        <q-input v-model="r.pictureField" label="pictureField" outlined type="url" />
+        <q-input v-model="r.imgField" label="imgField" outlined type="url" />
         <div class="row justify-center">
           <q-btn class="q-mr-md" color="green" label="Submit" no-caps @click="Submit" />
           <q-btn color="red" label="Reset" no-caps @click="Reset" />

@@ -13,16 +13,16 @@
     <div class="row">
       <div v-for="e in storeN.dataN" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
         <q-card class="q-ma-md">
-          <q-img :src="e.pictureField">
+          <q-img :src="e.imgField">
             <div class="text-h7 absolute-top text-right">
               {{ e.category.nameField }} -
-              {{ new Date(e.dateOfAdField).toLocaleDateString() }}
+              {{ new Date(e.dateField).toLocaleDateString() }}
             </div>
           </q-img>
           <q-card-section>
-            <q-badge v-if="e.undamagedField" color="green" label="yes" outline />
+            <q-badge v-if="e.boolField" color="green" label="yes" outline />
             <q-badge v-else color="red" label="no" outline />
-            {{ e.descriptionField }}
+            {{ e.descField }}
           </q-card-section>
           <q-card-actions align="center">
             <q-btn color="blue">I'm interested</q-btn>

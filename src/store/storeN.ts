@@ -7,11 +7,11 @@ interface IFields {
   id: number; // PK
   categoryId: number; // FK
   titleField: string;
-  descriptionField: string;
-  dateOfAdField: string;
-  undamagedField: boolean;
+  descField: string;
+  dateField: string;
+  boolField: boolean;
   priceField: number;
-  pictureField: string;
+  imgField: string;
   // JSON-server "expand" data as object from "1"-side:
   category: {
     id: number;
@@ -51,11 +51,11 @@ export const useStoreN = defineStore({
         .put(`api/advertisements/${params.id}`, {
           categoryId: params.category.value,
           titleField: params.titleField,
-          descriptionField: params.descriptionField,
-          dateOfAdField: params.dateOfAdField,
-          undamagedField: params.undamagedField,
+          descField: params.descField,
+          dateField: params.dateField,
+          boolField: params.boolField,
           priceField: params.priceField,
-          pictureField: params.pictureField,
+          imgField: params.imgField,
         })
         .then((res) => {
           if (res && res.data) {
@@ -85,11 +85,11 @@ export const useStoreN = defineStore({
         .post("api/advertisements", {
           categoryId: params.category.value,
           titleField: params.titleField,
-          descriptionField: params.descriptionField,
-          dateOfAdField: params.dateOfAdField,
-          undamagedField: params.undamagedField,
+          descField: params.descField,
+          dateField: params.dateField,
+          boolField: params.boolField,
           priceField: params.priceField,
-          pictureField: params.pictureField,
+          imgField: params.imgField,
         })
         .then((res) => {
           if (res && res.data) {
