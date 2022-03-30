@@ -14,24 +14,27 @@
     selected.value = [];
   }
 
-  // if JSON-server return field with object type:
+  // if JSON-server and MongoDb-populate() return field(s) with object type from "1"-side:
   // field: (row: any) => row.category.nameField,
+
+  // sort with: sortable: true
+  // align with (default right): align: "center"
   const columns: any[] = [
-    { name: "id", label: "id", field: "id", sortable: false, align: "left" },
-    { name: "categoryId", label: "categoryId", field: "categoryId", sortable: false },
-    { name: "titleField", label: "titleField", field: "titleField", sortable: true, align: "left" },
-    { name: "descField", label: "descField", field: "descField", sortable: true, align: "left" },
-    { name: "dateField", label: "dateField", field: "dateField", sortable: true, align: "left" },
-    { name: "boolField", label: "boolField", field: "boolField", sortable: true, align: "center" },
-    { name: "priceField", label: "priceField", field: "priceField", sortable: true },
+    { name: "id", label: "id", field: "id", align: "left" },
+    { name: "categoryId", label: "categoryId", field: "categoryId" },
+    { name: "categoryName", label: "categoryName", field: "categoryName" },
+    { name: "titleField", label: "titleField", field: "titleField", align: "left" },
+    { name: "descField", label: "descField", field: "descField", align: "left" },
+    { name: "dateField", label: "dateField", field: "dateField", align: "left" },
+    { name: "boolField", label: "boolField", field: "boolField", align: "center" },
+    { name: "priceField", label: "priceField", field: "priceField" },
     {
       name: "category",
       label: "category",
       field: (row: any) => row.category.nameField,
-      sortable: true,
       align: "center",
     },
-    { name: "imgField", label: "imgField", field: "imgField", sortable: true, align: "center" },
+    { name: "imgField", label: "imgField", field: "imgField", align: "center" },
   ];
 </script>
 
@@ -47,13 +50,14 @@
         title="Advertisements"
         wrap-cells
       >
+        <!-- slot1: -->
         <template #body-cell-boolField="props">
           <q-td :props="props">
             <q-badge v-if="props.value" color="green" label="Yes" outline />
             <q-badge v-else color="red" label="No" outline />
           </q-td>
         </template>
-
+        <!-- slot2: -->
         <template #body-cell-imgField="props">
           <q-td :props="props">
             <img :src="props.value" style="max-height: 100px" />

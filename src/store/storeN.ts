@@ -6,6 +6,7 @@ import router from "src/router";
 interface IFields {
   id: number; // PK
   categoryId: number; // FK
+  categoryName: string;
   titleField: string;
   descField: string;
   dateField: string;
