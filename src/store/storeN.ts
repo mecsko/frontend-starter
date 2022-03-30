@@ -23,7 +23,7 @@ interface IFields {
 interface IState {
   errormsg: string | null;
   dataN: Array<IFields>;
-  data: IFields | null; // for edit record
+  data: IFields | null; // for edit and new record
 }
 
 export const useStoreN = defineStore({
