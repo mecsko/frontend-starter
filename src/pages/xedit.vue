@@ -24,10 +24,11 @@
       persistent: true,
     })
       .onOk(() => {
+        delete storeN.data.category;
         storeN.editPostById();
-        router.push({ name: "xcard" });
       })
       .onCancel(() => {
+        storeN.data = {};
         router.push({ name: "xcard" });
       });
   }
@@ -51,12 +52,18 @@
           outlined
           :rules="[(v) => v != null || 'Choose!']"
         />
-        {{ storeN.data.categoryId }}
         <q-input v-model="storeN.data.titleField" dense label="titleField" outlined type="text" />
         <q-input v-model="storeN.data.descField" dense label="descField" outlined type="textarea" />
+        <q-input v-model="storeN.data.dateField" dense label="dateField" outlined type="date" />
+        <div class="row justify-end">
+          <q-checkbox v-model="storeN.data.boolField" dense label="boolField" />
+        </div>
+        <q-input v-model="storeN.data.priceField" label="priceField" outlined type="number" />
+        <q-input v-model="storeN.data.imgField" label="imgField" outlined type="url" />
         <div class="row justify-center">
           <q-btn class="q-mr-md" color="green" label="Submit" no-caps @click="Submit" />
         </div>
+        {{ storeN.data }}
       </div>
       <!-- Show/hide error message in a banner: -->
       <div class="row justify-center absolute-bottom">

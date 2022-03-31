@@ -1,6 +1,7 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
 // import { Dialog } from "quasar";
+import { Loading } from "quasar";
 import router from "src/router";
 
 interface IFields {
@@ -17,11 +18,12 @@ interface IFields {
   category?: {
     id?: number;
     nameField?: string;
-  } | null;
+  };
 }
 
 interface IState {
   errormsg: string;
+  loading: boolean;
   dataN: Array<IFields>;
   data: IFields; // for edit and new record
 }
@@ -30,54 +32,72 @@ export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
     errormsg: "",
+    loading: false,
     dataN: [],
     data: {},
   }),
   getters: {},
   actions: {
     async getAll(): Promise<void> {
+      this.loading = true;
+      Loading.show();
+      this.dataN = [];
       $axios
         .get("api/advertisements2")
         .then((res) => {
+          this.loading = false;
+          Loading.hide();
           if (res && res.data) {
             this.errormsg = "";
             this.dataN = res.data;
           }
         })
         .catch((error) => {
+          this.loading = false;
+          Loading.hide();
           // Dialog.create({ title: "Error", message: error.message });
           this.errormsg = error.message;
         });
     },
     async getById(): Promise<void> {
       if (this.data && this.data.id) {
+        this.loading = true;
+        Loading.show();
         $axios
           .get(`api/advertisements/${this.data.id}`)
           .then((res) => {
+            this.loading = false;
+            Loading.hide();
             if (res && res.data) {
               this.errormsg = "";
               this.data = res.data;
             }
           })
           .catch((error) => {
+            this.loading = false;
+            Loading.hide();
             // Dialog.create({ title: "Error", message: error.message });
             this.errormsg = error.message;
-            this.data = {};
           });
       }
     },
     async editPostById(): Promise<void> {
       if (this.data && this.data.id) {
+        this.loading = true;
+        Loading.show();
         $axios
           .put(`api/advertisements/${this.data.id}`, this.data)
           .then((res) => {
+            this.loading = false;
             if (res && res.data) {
               this.errormsg = "";
-              this.data = {};
-              this.getAll();
+              router.push({ name: "xcard" });
             }
+            this.data = {};
           })
           .catch((error) => {
+            this.loading = false;
+            Loading.hide();
             this.errormsg = error.message;
             this.data = {};
             // Dialog.create({ title: "Error", message: error.message });
@@ -86,32 +106,45 @@ export const useStoreN = defineStore({
     },
     async deleteById(): Promise<void> {
       if (this.data && this.data.id) {
+        this.loading = true;
+        Loading.show();
         $axios
           .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
+            this.loading = false;
+            Loading.hide();
             this.errormsg = "";
-            this.getAll();
+            this.data = {};
           })
           .catch((error) => {
+            this.loading = false;
+            Loading.hide();
             this.errormsg = error.message;
+            this.data = {};
             // Dialog.create({ title: "Error", message: error.message });
           });
       }
     },
     async create(): Promise<void> {
       if (this.data) {
-        this.data.categoryId = 1; // ez itt nem jó!
+        this.loading = true;
+        Loading.show();
         delete this.data.category;
-
         $axios
           .post("api/advertisements", this.data)
           .then((res) => {
+            this.loading = false;
+            Loading.hide();
             if (res && res.data) {
               this.errormsg = "";
+              this.data = {};
               router.push({ name: "xcard" });
             }
           })
           .catch((error) => {
+            this.loading = false;
+            Loading.hide();
+            this.data = {};
             this.errormsg = error.message;
             // Dialog.create({ title: "Error", message: error.message });
           });

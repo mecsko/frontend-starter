@@ -9,6 +9,9 @@ import "vue-global-api/computed";
 import "vue-global-api/watch";
 import "vue-global-api/watchEffect";
 import "vue-global-api/onMounted";
+import "vue-global-api/onBeforeUpdate";
+import "vue-global-api/onUpdated";
+import "vue-global-api/onBeforeUnmount";
 
 const app = createApp(App);
 

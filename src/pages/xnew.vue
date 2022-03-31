@@ -9,6 +9,7 @@
 
   onMounted(() => {
     store1.getAll();
+    storeN.errormsg = "";
     setDefault();
   });
 
@@ -27,13 +28,10 @@
 
   function setDefault() {
     storeN.data = {
-      titleField: "Alma",
-      descField: "körte",
       dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
-      boolField: false,
-      categoryId: 1,
+      priceField: 1000000,
+      imgField: "http://elit.jedlik.eu/nits/hahu/1.jpg",
     };
-    storeN.errormsg = "";
   }
 </script>
 
@@ -46,9 +44,14 @@
           v-model="storeN.data.categoryId"
           clearable
           dense
+          emit-value
           label="Vehicle type"
-          :options="store1.data1.map((c) => ({ value: c.id, label: c.nameField }))"
+          map-options
+          option-label="nameField"
+          option-value="id"
+          :options="store1.data1"
           outlined
+          :rules="[(v) => v != null || 'Choose!']"
         />
         <!-- <q-input v-model="r.titleField" dense label="titleField" outlined type="text" /> -->
         <q-input v-model="storeN.data!.titleField" dense label="titleField" outlined type="text" />
