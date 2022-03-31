@@ -4,7 +4,7 @@
   const storeN = useStoreN();
 
   const slide = ref(storeN.dataN[0].id);
-  const autoplay = ref(1000);
+  const autoplay = ref(2000);
 
   onMounted(() => {
     storeN.getAll();
