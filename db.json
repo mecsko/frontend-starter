@@ -16,7 +16,7 @@
       "categoryId": 3,
       "categoryName": "Munkagép",
       "titleField": "BELARUS MTZ 82",
-      "descField": "MTZ 82 traktor, eredeti piros. 1988évj. Piros rendszámmal, 1év műszakival. Feljavított sebességváltóval. Könnyű kormányzás. Azonnal munkára fogható állapotban. A traktorhoz tartozik külön homlokrakodó is ami külön is eladó esetleg. Cserébe 80 vagy 550 traktor érdekel. Szállítás is megoldható.",
+      "descField": "MTZ 8223 traktor, eredeti piros. 1988évj. Piros rendszámmal, 1év műszakival. Feljavított sebességváltóval. Könnyű kormányzás. Azonnal munkára fogható állapotban. A traktorhoz tartozik külön homlokrakodó is ami külön is eladó esetleg. Cserébe 80 vagy 550 traktor érdekel. Szállítás is megoldható.",
       "dateField": "2022-01-02",
       "boolField": true,
       "priceField": 195000,
@@ -175,6 +175,19 @@
       "boolField": true,
       "priceField": 26950000,
       "imgField": "http://elit.jedlik.eu/nits/hahu/19.jpg"
+    },
+    {
+      "titleField": "Alma",
+      "descField": "körte",
+      "dateField": "2022-03-31",
+      "boolField": false,
+      "category": {
+        "value": 3,
+        "label": "Munkagép"
+      },
+      "priceField": "2",
+      "imgField": "wefwfwe",
+      "id": 20
     }
   ],
   "categories": [

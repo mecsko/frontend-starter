@@ -9,7 +9,9 @@
   });
 
   function edit(id: number) {
-    router.push({ name: "xedit", params: { id: id } });
+    storeN.data = {};
+    storeN.data.id = id;
+    router.push({ name: "xedit" });
   }
 </script>
 

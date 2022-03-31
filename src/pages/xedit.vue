@@ -10,14 +10,12 @@
   const storeN = useStoreN();
   const store1 = useStore1();
 
-  let id = route.params.id; // read parameter id (it is reactive)
-
   onMounted(() => {
     if (route.params.id === undefined) {
       router.push({ name: "xcard" });
     } else {
       store1.getAll();
-      storeN.getById(id);
+      storeN.getById();
     }
   });
 
@@ -29,7 +27,7 @@
       persistent: true,
     })
       .onOk(() => {
-        storeN.editPostById(id);
+        storeN.editPostById();
         router.push({ name: "xcard" });
       })
       .onCancel(() => {

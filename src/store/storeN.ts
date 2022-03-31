@@ -49,25 +49,27 @@ export const useStoreN = defineStore({
           this.errormsg = error.message;
         });
     },
-    async getById(params: any): Promise<void> {
-      $axios
-        .get(`api/advertisements/${params}`)
-        .then((res) => {
-          if (res && res.data) {
-            this.errormsg = null;
-            this.data = res.data;
-          }
-        })
-        .catch((error) => {
-          // Dialog.create({ title: "Error", message: error.message });
-          this.errormsg = error.message;
-          this.data = null;
-        });
-    },
-    async editPostById(params: any): Promise<void> {
-      if (this.data) {
+    async getById(): Promise<void> {
+      if (this.data && this.data.id) {
         $axios
-          .put(`api/advertisements/${params}`, this.data)
+          .get(`api/advertisements/${this.data.id}`)
+          .then((res) => {
+            if (res && res.data) {
+              this.errormsg = null;
+              this.data = res.data;
+            }
+          })
+          .catch((error) => {
+            // Dialog.create({ title: "Error", message: error.message });
+            this.errormsg = error.message;
+            this.data = null;
+          });
+      }
+    },
+    async editPostById(): Promise<void> {
+      if (this.data && this.data.id) {
+        $axios
+          .put(`api/advertisements/${this.data.id}`, this.data)
           .then((res) => {
             if (res && res.data) {
               this.errormsg = null;
@@ -82,39 +84,38 @@ export const useStoreN = defineStore({
           });
       }
     },
-    async deleteById(params: any): Promise<void> {
-      $axios
-        .delete(`api/advertisements/${params.id}`)
-        .then(() => {
-          this.errormsg = null;
-          this.getAll();
-        })
-        .catch((error) => {
-          this.errormsg = error.message;
-          // Dialog.create({ title: "Error", message: error.message });
-        });
-    },
-    async create(params: any): Promise<void> {
-      $axios
-        .post("api/advertisements", {
-          categoryId: params.category.value,
-          titleField: params.titleField,
-          descField: params.descField,
-          dateField: params.dateField,
-          boolField: params.boolField,
-          priceField: params.priceField,
-          imgField: params.imgField,
-        })
-        .then((res) => {
-          if (res && res.data) {
+    async deleteById(): Promise<void> {
+      if (this.data && this.data.id) {
+        $axios
+          .delete(`api/advertisements/${this.data.id}`)
+          .then(() => {
             this.errormsg = null;
-            router.push({ name: "xgrid" });
-          }
-        })
-        .catch((error) => {
-          this.errormsg = error.message;
-          // Dialog.create({ title: "Error", message: error.message });
-        });
+            this.getAll();
+          })
+          .catch((error) => {
+            this.errormsg = error.message;
+            // Dialog.create({ title: "Error", message: error.message });
+          });
+      }
+    },
+    async create(): Promise<void> {
+      if (this.data) {
+        this.data.categoryId = 1; // ez itt nem jó!
+        delete this.data.category;
+
+        $axios
+          .post("api/advertisements", this.data)
+          .then((res) => {
+            if (res && res.data) {
+              this.errormsg = null;
+              router.push({ name: "xcard" });
+            }
+          })
+          .catch((error) => {
+            this.errormsg = error.message;
+            // Dialog.create({ title: "Error", message: error.message });
+          });
+      }
     },
   },
 });

@@ -5,51 +5,41 @@
   const storeN = useStoreN();
   const store1 = useStore1();
 
-  storeN.data = {
-    titleField: "",
-    descField: "",
-    dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
-    boolField: false,
-    category: null,
-  };
-
-  // const r = reactive({
-  //   category: { value: null, label: "Please choose!" },
-  //   titleField: "",
-  //   descField: "",
-  //   dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
-  //   boolField: false,
-  //   priceField: 0,
-  //   imgField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
-  // });
+  // Set default values
 
   onMounted(() => {
     store1.getAll();
+    setDefault();
   });
 
   function Submit() {
-    // if (r.titleField == "" || r.descField == "" || r.dateField == "" || r.priceField == 0) {
-    //   storeN.errormsg = "Please fill in all fields!";
-    //   // Dialog.create({ titleField: "Error", message: "Please fill in all fields!" });
-    // } else storeN.create(r);
-    // storeN.create(r);
+    if (
+      storeN.data &&
+      (storeN.data.titleField == "" ||
+        storeN.data.descField == "" ||
+        storeN.data.dateField == "" ||
+        storeN.data.priceField == 0)
+    ) {
+      storeN.errormsg = "Please fill in all fields!";
+      // Dialog.create({ titleField: "Error", message: "Please fill in all fields!" });
+    } else storeN.create();
   }
 
-  function Reset() {
-    // r.category = { value: null, label: "Please choose!" };
-    // r.titleField = "";
-    // r.descField = "";
-    // r.dateField = date.formatDate(new Date(), "YYYY-MM-DD");
-    // r.boolField = false;
-    // r.priceField = 0;
-    // r.imgField = "http://elit.jedlik.eu/nits/hahu/01.jpg";
+  function setDefault() {
+    storeN.data = {
+      titleField: "Alma",
+      descField: "körte",
+      dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
+      boolField: false,
+      category: null,
+    };
     storeN.errormsg = "";
   }
 </script>
 
 <template>
   <q-page>
-    <div class="row justify-center">
+    <div v-if="storeN.data" class="row justify-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-md">
         <h5 class="text-center q-mt-lg q-mb-none">Add new advertisement</h5>
         <q-select
@@ -77,7 +67,7 @@
         <q-input v-model="storeN.data!.imgField" label="imgField" outlined type="url" />
         <div class="row justify-center">
           <q-btn class="q-mr-md" color="green" label="Submit" no-caps @click="Submit" />
-          <q-btn color="red" label="Reset" no-caps @click="Reset" />
+          <q-btn color="red" label="Reset" no-caps @click="setDefault" />
         </div>
 
         <!-- Show/hide error message in a banner: -->
