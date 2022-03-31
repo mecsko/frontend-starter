@@ -31,7 +31,7 @@
       descField: "körte",
       dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
       boolField: false,
-      category: null,
+      categoryId: 1,
     };
     storeN.errormsg = "";
   }
@@ -43,7 +43,7 @@
       <div class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-md">
         <h5 class="text-center q-mt-lg q-mb-none">Add new advertisement</h5>
         <q-select
-          v-model="storeN.data!.category"
+          v-model="storeN.data.categoryId"
           clearable
           dense
           label="Vehicle type"
@@ -75,7 +75,7 @@
           <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
             <span>{{ storeN.errormsg }}</span>
             <template #action>
-              <q-btn flat icon="close" round @click="storeN.errormsg = null" />
+              <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
             </template>
           </q-banner>
         </div>

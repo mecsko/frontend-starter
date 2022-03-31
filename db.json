@@ -175,19 +175,6 @@
       "boolField": true,
       "priceField": 26950000,
       "imgField": "http://elit.jedlik.eu/nits/hahu/19.jpg"
-    },
-    {
-      "titleField": "Alma",
-      "descField": "körte",
-      "dateField": "2022-03-31",
-      "boolField": false,
-      "category": {
-        "value": 3,
-        "label": "Munkagép"
-      },
-      "priceField": "2",
-      "imgField": "wefwfwe",
-      "id": 20
     }
   ],
   "categories": [

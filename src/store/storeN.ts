@@ -21,17 +21,17 @@ interface IFields {
 }
 
 interface IState {
-  errormsg: string | null;
+  errormsg: string;
   dataN: Array<IFields>;
-  data: IFields | null; // for edit and new record
+  data: IFields; // for edit and new record
 }
 
 export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
-    errormsg: null,
+    errormsg: "",
     dataN: [],
-    data: null,
+    data: {},
   }),
   getters: {},
   actions: {
@@ -40,7 +40,7 @@ export const useStoreN = defineStore({
         .get("api/advertisements2")
         .then((res) => {
           if (res && res.data) {
-            this.errormsg = null;
+            this.errormsg = "";
             this.dataN = res.data;
           }
         })
@@ -55,14 +55,14 @@ export const useStoreN = defineStore({
           .get(`api/advertisements/${this.data.id}`)
           .then((res) => {
             if (res && res.data) {
-              this.errormsg = null;
+              this.errormsg = "";
               this.data = res.data;
             }
           })
           .catch((error) => {
             // Dialog.create({ title: "Error", message: error.message });
             this.errormsg = error.message;
-            this.data = null;
+            this.data = {};
           });
       }
     },
@@ -72,14 +72,14 @@ export const useStoreN = defineStore({
           .put(`api/advertisements/${this.data.id}`, this.data)
           .then((res) => {
             if (res && res.data) {
-              this.errormsg = null;
-              this.data = null;
+              this.errormsg = "";
+              this.data = {};
               this.getAll();
             }
           })
           .catch((error) => {
             this.errormsg = error.message;
-            this.data = null;
+            this.data = {};
             // Dialog.create({ title: "Error", message: error.message });
           });
       }
@@ -89,7 +89,7 @@ export const useStoreN = defineStore({
         $axios
           .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
-            this.errormsg = null;
+            this.errormsg = "";
             this.getAll();
           })
           .catch((error) => {
@@ -107,7 +107,7 @@ export const useStoreN = defineStore({
           .post("api/advertisements", this.data)
           .then((res) => {
             if (res && res.data) {
-              this.errormsg = null;
+              this.errormsg = "";
               router.push({ name: "xcard" });
             }
           })

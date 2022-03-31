@@ -36,6 +36,15 @@
           </q-card-actions>
         </q-card>
       </div>
+      <!-- Show/hide error message in a banner: -->
+      <div class="row justify-center absolute-bottom">
+        <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
+          <span>{{ storeN.errormsg }}</span>
+          <template #action>
+            <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
+          </template>
+        </q-banner>
+      </div>
     </div>
   </q-page>
 </template>

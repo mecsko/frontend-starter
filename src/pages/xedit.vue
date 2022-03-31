@@ -1,17 +1,14 @@
 <script setup lang="ts">
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
-  import { useRoute } from "vue-router";
   import { Dialog } from "quasar";
   import router from "src/router";
-
-  const route = useRoute();
 
   const storeN = useStoreN();
   const store1 = useStore1();
 
   onMounted(() => {
-    if (route.params.id === undefined) {
+    if (storeN.data.id === undefined) {
       router.push({ name: "xcard" });
     } else {
       store1.getAll();
@@ -41,6 +38,20 @@
     <div class="row justify-center">
       <div v-if="storeN.data" class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-md">
         <h5 class="text-center q-mt-lg q-mb-none">Edit advertisement</h5>
+        <q-select
+          v-model="storeN.data.categoryId"
+          clearable
+          dense
+          emit-value
+          label="Vehicle type"
+          map-options
+          option-label="nameField"
+          option-value="id"
+          :options="store1.data1"
+          outlined
+          :rules="[(v) => v != null || 'Choose!']"
+        />
+        {{ storeN.data.categoryId }}
         <q-input v-model="storeN.data.titleField" dense label="titleField" outlined type="text" />
         <q-input v-model="storeN.data.descField" dense label="descField" outlined type="textarea" />
         <div class="row justify-center">
@@ -52,7 +63,7 @@
         <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
           <span>{{ storeN.errormsg }}</span>
           <template #action>
-            <q-btn flat icon="close" round @click="storeN.errormsg = null" />
+            <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
           </template>
         </q-banner>
       </div>

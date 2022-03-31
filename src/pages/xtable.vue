@@ -10,7 +10,7 @@
   const selected = ref<any>([]);
 
   function deleteRecord(): void {
-    storeN.deleteById({ id: selected.value[0].id });
+    storeN.deleteById();
     selected.value = [];
   }
 
