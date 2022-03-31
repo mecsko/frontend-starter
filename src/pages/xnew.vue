@@ -30,7 +30,8 @@
     storeN.data = {
       dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
       priceField: 1000000,
-      imgField: "http://elit.jedlik.eu/nits/hahu/1.jpg",
+      imgField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
+      boolField: false,
     };
   }
 </script>
@@ -54,20 +55,14 @@
           :rules="[(v) => v != null || 'Choose!']"
         />
         <!-- <q-input v-model="r.titleField" dense label="titleField" outlined type="text" /> -->
-        <q-input v-model="storeN.data!.titleField" dense label="titleField" outlined type="text" />
-        <q-input
-          v-model="storeN.data!.descField"
-          dense
-          label="descField"
-          outlined
-          type="textarea"
-        />
-        <q-input v-model="storeN.data!.dateField" dense label="Date of ad" outlined type="date" />
+        <q-input v-model="storeN.data.titleField" dense label="titleField" outlined type="text" />
+        <q-input v-model="storeN.data.descField" dense label="descField" outlined type="textarea" />
+        <q-input v-model="storeN.data.dateField" dense label="dateField" outlined type="date" />
         <div class="row justify-end">
-          <q-checkbox v-model="storeN.data!.boolField" dense label="boolField" />
+          <q-checkbox v-model="storeN.data.boolField" dense label="boolField" />
         </div>
-        <q-input v-model="storeN.data!.priceField" label="priceField" outlined type="number" />
-        <q-input v-model="storeN.data!.imgField" label="imgField" outlined type="url" />
+        <q-input v-model="storeN.data.priceField" label="priceField" outlined type="number" />
+        <q-input v-model="storeN.data.imgField" label="imgField" outlined type="url" />
         <div class="row justify-center">
           <q-btn class="q-mr-md" color="green" label="Submit" no-caps @click="Submit" />
           <q-btn color="red" label="Reset" no-caps @click="setDefault" />

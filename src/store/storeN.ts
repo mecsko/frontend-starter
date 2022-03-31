@@ -7,7 +7,6 @@ import router from "src/router";
 interface IFields {
   id?: number; // PK
   categoryId?: number; // FK
-  categoryName?: string;
   titleField?: string;
   descField?: string;
   dateField?: string;
@@ -115,6 +114,7 @@ export const useStoreN = defineStore({
             Loading.hide();
             this.errormsg = "";
             this.data = {};
+            this.getAll();
           })
           .catch((error) => {
             this.loading = false;

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { useStoreN } from "../store/storeN";
+  import { useStoreN } from "src/store/storeN";
 
   const storeN = useStoreN();
 
-  const slide = ref(1);
+  const slide = ref(storeN.dataN[0].id);
   const autoplay = ref(1000);
 
   onMounted(() => {

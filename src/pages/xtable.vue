@@ -10,6 +10,7 @@
   const selected = ref<any>([]);
 
   function deleteRecord(): void {
+    storeN.data.id = selected.value[0].id;
     storeN.deleteById();
     selected.value = [];
   }
@@ -22,7 +23,6 @@
   const columns: any[] = [
     { name: "id", label: "id", field: "id", align: "left" },
     { name: "categoryId", label: "categoryId", field: "categoryId" },
-    { name: "categoryName", label: "categoryName", field: "categoryName" },
     { name: "titleField", label: "titleField", field: "titleField", align: "left" },
     { name: "descField", label: "descField", field: "descField", align: "left" },
     { name: "dateField", label: "dateField", field: "dateField", align: "left" },
