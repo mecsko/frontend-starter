@@ -9,7 +9,6 @@
   });
 
   function edit(id: number) {
-    storeN.data = {};
     storeN.data.id = id;
     router.push({ name: "xedit" });
   }

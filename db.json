@@ -2,7 +2,7 @@
   "advertisements": [
     {
       "id": 1,
-      "categoryId": 2,
+      "categoryId": 7,
       "titleField": "Renault Trafic 1.9 dCi L1H2 Business",
       "descField": "A HŰTŐ HIBÁTLANUL MŰKÖDIK. Az autóhoz fél év szavatosság, és km igazolás jár. Az autó felszereltségének ellenőrzése megtekintéskor a vevő felelőssége, utólag kiderülő eltérésre semmilyen felelősséget nem áll módunkban vállalni!",
       "dateField": "2022-02-21",
@@ -14,7 +14,7 @@
       "id": 2,
       "categoryId": 3,
       "titleField": "BELARUS MTZ 82",
-      "descField": "MTZ 8223 traktor, eredeti piros. 1988évj. Piros rendszámmal, 1év műszakival. Feljavított sebességváltóval. Könnyű kormányzás. Azonnal munkára fogható állapotban. A traktorhoz tartozik külön homlokrakodó is ami külön is eladó esetleg. Cserébe 80 vagy 550 traktor érdekel. Szállítás is megoldható.",
+      "descField": "MTZ 82 traktor, eredeti piros. 1988évj. Piros rendszámmal, 1év műszakival. Feljavított sebességváltóval. Könnyű kormányzás. Azonnal munkára fogható állapotban. A traktorhoz tartozik külön homlokrakodó is ami külön is eladó esetleg. Cserébe 80 vagy 550 traktor érdekel. Szállítás is megoldható.",
       "dateField": "2022-01-02",
       "boolField": true,
       "priceField": 195000,

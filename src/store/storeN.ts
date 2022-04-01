@@ -1,8 +1,8 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
-// import { Dialog } from "quasar";
+import { Dialog } from "quasar";
 import { Loading } from "quasar";
-import router from "src/router";
+// import router from "src/router";
 
 interface IFields {
   id?: number; // PK
@@ -37,116 +37,107 @@ export const useStoreN = defineStore({
   }),
   getters: {},
   actions: {
-    async getAll(): Promise<void> {
+    loadingShow(): void {
       this.loading = true;
       Loading.show();
+    },
+    loadingHide(): void {
+      this.loading = false;
+      Loading.hide();
+    },
+    showErrorDialog(msg: string): void {
+      this.errormsg = msg;
+      Dialog.create({ title: "Error on N-side", message: msg });
+    },
+    async getAll(): Promise<void> {
+      this.loadingShow();
       this.dataN = [];
       $axios
         .get("api/advertisements2")
         .then((res) => {
-          this.loading = false;
-          Loading.hide();
+          this.loadingHide();
           if (res && res.data) {
             this.errormsg = "";
             this.dataN = res.data;
           }
         })
         .catch((error) => {
-          this.loading = false;
-          Loading.hide();
-          // Dialog.create({ title: "Error", message: error.message });
-          this.errormsg = error.message;
+          this.loadingHide();
+          this.showErrorDialog(error.message);
         });
     },
     async getById(): Promise<void> {
       if (this.data && this.data.id) {
-        this.loading = true;
-        Loading.show();
+        this.loadingShow();
         $axios
           .get(`api/advertisements/${this.data.id}`)
           .then((res) => {
-            this.loading = false;
-            Loading.hide();
+            this.loadingHide();
             if (res && res.data) {
               this.errormsg = "";
               this.data = res.data;
             }
           })
           .catch((error) => {
-            this.loading = false;
-            Loading.hide();
-            // Dialog.create({ title: "Error", message: error.message });
-            this.errormsg = error.message;
+            this.loadingHide();
+            this.showErrorDialog(error.message);
           });
       }
     },
-    async editPostById(): Promise<void> {
+    async editById(): Promise<void> {
       if (this.data && this.data.id) {
-        this.loading = true;
-        Loading.show();
+        this.loadingShow();
         $axios
           .put(`api/advertisements/${this.data.id}`, this.data)
           .then((res) => {
-            this.loading = false;
+            this.loadingHide();
             if (res && res.data) {
               this.errormsg = "";
-              router.push({ name: "xcard" });
+              this.data = {};
+              Dialog.create({ title: "Edit document", message: "Success!" });
             }
-            this.data = {};
           })
           .catch((error) => {
-            this.loading = false;
-            Loading.hide();
-            this.errormsg = error.message;
-            this.data = {};
-            // Dialog.create({ title: "Error", message: error.message });
+            this.loadingHide();
+            this.showErrorDialog(error.message);
           });
       }
     },
     async deleteById(): Promise<void> {
       if (this.data && this.data.id) {
-        this.loading = true;
-        Loading.show();
+        this.loadingShow();
         $axios
           .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
-            this.loading = false;
-            Loading.hide();
+            this.loadingHide();
             this.errormsg = "";
             this.data = {};
             this.getAll();
+            Dialog.create({ title: "Delete document", message: "Success!" });
           })
           .catch((error) => {
-            this.loading = false;
-            Loading.hide();
-            this.errormsg = error.message;
-            this.data = {};
-            // Dialog.create({ title: "Error", message: error.message });
+            this.loadingHide();
+            this.showErrorDialog(error.message);
           });
       }
     },
     async create(): Promise<void> {
       if (this.data) {
-        this.loading = true;
-        Loading.show();
+        this.loadingShow();
         delete this.data.category;
         $axios
           .post("api/advertisements", this.data)
           .then((res) => {
-            this.loading = false;
-            Loading.hide();
+            this.loadingHide();
             if (res && res.data) {
               this.errormsg = "";
               this.data = {};
-              router.push({ name: "xcard" });
+              Dialog.create({ title: "Create document", message: "Success!" });
             }
           })
           .catch((error) => {
-            this.loading = false;
-            Loading.hide();
-            this.data = {};
-            this.errormsg = error.message;
-            // Dialog.create({ title: "Error", message: error.message });
+            this.loadingHide();
+            this.showErrorDialog(error.message);
           });
       }
     },

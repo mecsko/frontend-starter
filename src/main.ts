@@ -12,6 +12,7 @@ import "vue-global-api/onMounted";
 import "vue-global-api/onBeforeUpdate";
 import "vue-global-api/onUpdated";
 import "vue-global-api/onBeforeUnmount";
+import "vue-global-api/onUnmounted";
 
 const app = createApp(App);
 

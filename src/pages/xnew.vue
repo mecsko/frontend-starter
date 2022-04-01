@@ -1,32 +1,32 @@
 <script setup lang="ts">
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
-  import { date } from "quasar";
+  import { date, Dialog } from "quasar";
+  import { onUnmounted } from "vue";
+
   const storeN = useStoreN();
   const store1 = useStore1();
 
-  // Set default values
-
+  // Set default values:
   onMounted(() => {
     store1.getAll();
     storeN.errormsg = "";
-    setDefault();
+    onReset(); // set default settings
   });
 
-  function Submit() {
-    if (
-      storeN.data &&
-      (storeN.data.titleField == "" ||
-        storeN.data.descField == "" ||
-        storeN.data.dateField == "" ||
-        storeN.data.priceField == 0)
-    ) {
-      storeN.errormsg = "Please fill in all fields!";
-      // Dialog.create({ titleField: "Error", message: "Please fill in all fields!" });
+  onUnmounted(() => {
+    storeN.data = {};
+    storeN.errormsg = "";
+  });
+
+  function onSubmit() {
+    if (Object.keys(storeN.data).length < 7) {
+      Dialog.create({ title: "Form warning", message: "Please fill in all fields!" });
     } else storeN.create();
+    onReset();
   }
 
-  function setDefault() {
+  function onReset() {
     storeN.data = {
       dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
       imgField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
@@ -39,83 +39,53 @@
   <q-page>
     <div v-if="storeN.data" class="row justify-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <q-form @submit="Submit">
-          <h5 class="text-center q-mt-lg q-mb-none">Add new advertisement</h5>
+        <q-form @reset="onReset" @submit="onSubmit">
+          <h5 class="text-center q-mt-lg q-mb-none">
+            Add new advertisement ({{ Object.keys(storeN.data).length }})
+          </h5>
           <q-select
             v-model="storeN.data.categoryId"
             clearable
-            dense
             emit-value
             label="Vehicle type"
+            lazy-rules="ondemand"
             map-options
             option-label="nameField"
             option-value="id"
             :options="store1.data1"
-            outlined
             :rules="[(v) => v != null || 'Choose!']"
           />
-          <!-- <q-input v-model="r.titleField" dense label="titleField" outlined type="text" /> -->
-          <q-input
-            v-model="storeN.data.titleField"
-            dense
-            label="titleField"
-            outlined
-            :rules="[(v) => v != null || 'Choose!']"
-            type="text"
-          />
-          <q-input
-            v-model="storeN.data.descField"
-            dense
-            label="descField"
-            outlined
-            :rules="[(v) => v != null || 'Choose!']"
-            type="textarea"
-          />
-          <q-input
-            v-model="storeN.data.dateField"
-            dense
-            label="dateField"
-            outlined
-            :rules="[(v) => v != null || 'Choose!']"
-            type="date"
-          />
+          <q-input v-model="storeN.data.titleField" label="titleField" type="text" />
+          <q-input v-model="storeN.data.descField" label="descField" type="textarea" />
+          <q-input v-model="storeN.data.dateField" clearable label="dateField" type="date" />
           <div class="row justify-end q-mb-md">
-            <q-checkbox v-model="storeN.data.boolField" dense label="boolField" />
+            <q-checkbox v-model="storeN.data.boolField" label="boolField" />
           </div>
-          <q-input
-            v-model="storeN.data.priceField"
-            label="priceField"
-            outlined
-            :rules="[(v) => v != null || 'Choose!']"
-            type="number"
-          />
+          <q-input v-model="storeN.data.priceField" label="priceField" type="number" />
           <q-input
             v-model="storeN.data.imgField"
+            clearable
             label="imgField"
-            outlined
+            lazy-rules="ondemand"
             :rules="[(v) => v != null || 'Choose!']"
             type="url"
           />
           <div class="row justify-center">
             <q-btn class="q-mr-md" color="green" label="Submit" no-caps type="submit" />
-            <q-btn color="red" label="Reset" no-caps @click="setDefault" />
+            <q-btn color="red" label="Reset" no-caps type="reset" />
           </div>
-
-          <!-- Show/hide error message in a banner: -->
-          <div class="row justify-center absolute-bottom">
-            <q-banner
-              v-if="storeN.errormsg"
-              class="text-white bg-red q-mb-md"
-              inline-actions
-              rounded
-            >
-              <span>{{ storeN.errormsg }}</span>
-              <template #action>
-                <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
-              </template>
-            </q-banner>
-          </div>
+          {{ storeN.data }}
         </q-form>
+
+        <!-- Show/hide error message in a banner: -->
+        <!-- <div class="row justify-center absolute-bottom">
+          <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
+            <span>{{ storeN.errormsg }}</span>
+            <template #action>
+              <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
+            </template>
+          </q-banner>
+        </div> -->
       </div>
     </div>
   </q-page>
