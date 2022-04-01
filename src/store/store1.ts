@@ -4,14 +4,15 @@ import { defineStore } from "pinia";
 import { Loading } from "quasar";
 
 interface IFields {
-  id: number;
-  nameField: string;
+  id?: number;
+  nameField?: string;
 }
 
 interface IState {
   loading: boolean;
   errormsg: string;
   data1: Array<IFields>;
+  data: IFields;
 }
 
 export const useStore1 = defineStore({
@@ -20,6 +21,7 @@ export const useStore1 = defineStore({
     loading: false,
     errormsg: "",
     data1: [],
+    data: {},
   }),
   getters: {},
   actions: {
