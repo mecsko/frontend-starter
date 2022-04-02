@@ -1,8 +1,14 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
-import { Dialog } from "quasar";
-import { Loading } from "quasar";
-// import router from "src/router";
+import { Notify, Loading } from "quasar";
+// import { Dialog, Loading } from "quasar";
+
+Notify.setDefaults({
+  position: "bottom",
+  textColor: "yellow",
+  timeout: 3000,
+  actions: [{ icon: "close", color: "white" }],
+});
 
 interface IFields {
   id?: number; // PK
@@ -13,7 +19,7 @@ interface IFields {
   boolField?: boolean;
   priceField?: number;
   imgField?: string;
-  // JSON-server "expand" data as object from "1"-side:
+  // JSON-server and MongoDb-populate() return field(s) with object type from the "1"-side:
   category?: {
     id?: number;
     nameField?: string;
@@ -45,9 +51,10 @@ export const useStoreN = defineStore({
       this.loading = false;
       Loading.hide();
     },
-    showErrorDialog(msg: string): void {
+    showError(msg: string): void {
       this.errormsg = msg;
-      Dialog.create({ title: "Error on N-side", message: msg });
+      // Dialog.create({ title: "Error on N-side", message: msg });
+      Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
     },
     async getAll(): Promise<void> {
       this.loadingShow();
@@ -63,7 +70,7 @@ export const useStoreN = defineStore({
         })
         .catch((error) => {
           this.loadingHide();
-          this.showErrorDialog(error.message);
+          this.showError(error.message);
         });
     },
     async getById(): Promise<void> {
@@ -80,7 +87,7 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             this.loadingHide();
-            this.showErrorDialog(error.message);
+            this.showError(error.message);
           });
       }
     },
@@ -94,12 +101,13 @@ export const useStoreN = defineStore({
             if (res && res.data) {
               this.errormsg = "";
               this.data = {};
-              Dialog.create({ title: "Edit document", message: "Success!" });
+              // Dialog.create({ title: "Edit document", message: "Success!" });
+              Notify.create({ message: "Edit document: Success!", color: "positive" });
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showErrorDialog(error.message);
+            this.showError(error.message);
           });
       }
     },
@@ -113,11 +121,12 @@ export const useStoreN = defineStore({
             this.errormsg = "";
             this.data = {};
             this.getAll();
-            Dialog.create({ title: "Delete document", message: "Success!" });
+            // Dialog.create({ title: "Delete document", message: "Success!" });
+            Notify.create({ message: "Delete document: Success!", color: "positive" });
           })
           .catch((error) => {
             this.loadingHide();
-            this.showErrorDialog(error.message);
+            this.showError(error.message);
           });
       }
     },
@@ -132,12 +141,13 @@ export const useStoreN = defineStore({
             if (res && res.data) {
               this.errormsg = "";
               this.data = {};
-              Dialog.create({ title: "Create document", message: "Success!" });
+              // Dialog.create({ title: "Create document", message: "Success!" });
+              Notify.create({ message: "Save new document: Success!", color: "positive" });
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showErrorDialog(error.message);
+            this.showError(error.message);
           });
       }
     },

@@ -1,7 +1,14 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
-// import { Dialog } from "quasar";
-import { Loading } from "quasar";
+import { Notify, Loading } from "quasar";
+// import { Dialog, Loading } from "quasar";
+
+Notify.setDefaults({
+  position: "bottom",
+  textColor: "yellow",
+  timeout: 3000,
+  actions: [{ icon: "close", color: "white" }],
+});
 
 interface IFields {
   id?: number;
@@ -25,15 +32,26 @@ export const useStore1 = defineStore({
   }),
   getters: {},
   actions: {
-    async getAll(): Promise<void> {
+    loadingShow(): void {
       this.loading = true;
       Loading.show();
+    },
+    loadingHide(): void {
+      this.loading = false;
+      Loading.hide();
+    },
+    showError(msg: string): void {
+      this.errormsg = msg;
+      // Dialog.create({ title: "Error on 1-side", message: msg });
+      Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
+    },
+    async getAll(): Promise<void> {
+      this.loadingShow();
       this.data1 = [];
       $axios
         .get("api/categories")
         .then((res) => {
-          this.loading = false;
-          Loading.hide();
+          this.loadingHide();
           if (res && res.data) {
             this.errormsg = "";
             this.data1 = res.data;
@@ -42,8 +60,7 @@ export const useStore1 = defineStore({
         .catch((error) => {
           this.loading = false;
           Loading.hide();
-          // Dialog.create({ title: "Error", message: error.message });
-          this.errormsg = error.message;
+          this.showError(error.message);
         });
     },
   },

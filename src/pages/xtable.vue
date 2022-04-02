@@ -15,7 +15,7 @@
     selected.value = [];
   }
 
-  // if JSON-server and MongoDb-populate() return field(s) with object type from "1"-side:
+  // JSON-server and MongoDb-populate() return field(s) with object type from the "1"-side:
   // field: (row: any) => row.category.nameField,
 
   // sort with: sortable: true
