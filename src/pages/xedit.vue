@@ -18,7 +18,6 @@
 
   onUnmounted(() => {
     storeN.data = {};
-    storeN.errormsg = "";
   });
 
   function Submit() {
@@ -33,8 +32,7 @@
         router.push({ name: "xcard" });
       })
       .onCancel(() => {
-        storeN.data = {};
-        router.push({ name: "xcard" });
+        // router.push({ name: "xcard" });
       });
   }
 </script>
@@ -44,34 +42,61 @@
     <div class="row justify-center">
       <div v-if="storeN.data" class="col-12 col-sm-8 col-md-6 col-lg-4 q-gutter-md">
         <q-form @submit="Submit">
-          <h5 class="text-center q-mt-lg q-mb-none">Edit advertisement</h5>
+          <h5 class="text-center q-mt-sm q-mb-none">
+            Edit advertisement ({{ Object.keys(storeN.data).length }})
+          </h5>
           <q-select
             v-model="storeN.data.categoryId"
             clearable
-            dense
             emit-value
-            label="Vehicle type"
+            filled
+            label="nameField"
             map-options
             option-label="nameField"
             option-value="id"
             :options="store1.data1"
-            outlined
-            :rules="[(v) => v != null || 'Choose!']"
+            :rules="[(v) => v != null || 'Please choose one!']"
           />
-          <q-input v-model="storeN.data.titleField" dense label="titleField" outlined type="text" />
+          <q-input
+            v-model="storeN.data.titleField"
+            filled
+            label="titleField"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            type="text"
+          />
           <q-input
             v-model="storeN.data.descField"
-            dense
+            filled
             label="descField"
-            outlined
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
             type="textarea"
           />
-          <q-input v-model="storeN.data.dateField" dense label="dateField" outlined type="date" />
-          <div class="row justify-end">
-            <q-checkbox v-model="storeN.data.boolField" dense label="boolField" />
+          <q-input
+            v-model="storeN.data.dateField"
+            clearable
+            filled
+            label="dateField"
+            :rules="[(v) => (v != null && v != '') || 'dateField - Choose!']"
+            type="date"
+          />
+          <div class="row justify-end q-mb-md">
+            <q-checkbox v-model="storeN.data.boolField" filled label="boolField" />
           </div>
-          <q-input v-model="storeN.data.priceField" label="priceField" outlined type="number" />
-          <q-input v-model="storeN.data.imgField" label="imgField" outlined type="url" />
+          <q-input
+            v-model="storeN.data.priceField"
+            filled
+            label="priceField"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            type="number"
+          />
+          <q-input
+            v-model="storeN.data.imgField"
+            clearable
+            filled
+            label="imgField"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            type="url"
+          />
           <div class="row justify-center">
             <q-btn class="q-mr-md" color="green" label="Submit" no-caps type="submit" />
           </div>

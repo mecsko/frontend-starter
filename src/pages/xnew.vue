@@ -2,7 +2,7 @@
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
   import { date, Dialog } from "quasar";
-  import { onUnmounted } from "vue";
+  import router from "src/router";
 
   const storeN = useStoreN();
   const store1 = useStore1();
@@ -16,14 +16,22 @@
 
   onUnmounted(() => {
     storeN.data = {};
-    storeN.errormsg = "";
   });
 
   function onSubmit() {
-    if (Object.keys(storeN.data).length < 7) {
-      Dialog.create({ title: "Form warning", message: "Please fill in all fields!" });
-    } else storeN.create();
-    onReset();
+    Dialog.create({
+      title: "Confirm",
+      message: "Would you like to save new document?",
+      cancel: true,
+      persistent: true,
+    })
+      .onOk(() => {
+        storeN.create();
+        router.push({ name: "xcard" });
+      })
+      .onCancel(() => {
+        // router.push({ name: "xcard" });
+      });
   }
 
   function onReset() {
@@ -40,34 +48,61 @@
     <div v-if="storeN.data" class="row justify-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <q-form @reset="onReset" @submit="onSubmit">
-          <h5 class="text-center q-mt-lg q-mb-none">
+          <h5 class="text-center q-mt-sm q-mb-none">
             Add new advertisement ({{ Object.keys(storeN.data).length }})
           </h5>
           <q-select
             v-model="storeN.data.categoryId"
             clearable
             emit-value
-            label="Vehicle type"
-            lazy-rules="ondemand"
+            filled
+            label="nameField"
             map-options
             option-label="nameField"
             option-value="id"
             :options="store1.data1"
-            :rules="[(v) => v != null || 'Choose!']"
+            :rules="[(v) => v != null || 'Please choose one!']"
           />
-          <q-input v-model="storeN.data.titleField" label="titleField" type="text" />
-          <q-input v-model="storeN.data.descField" label="descField" type="textarea" />
-          <q-input v-model="storeN.data.dateField" clearable label="dateField" type="date" />
+          <q-input
+            v-model="storeN.data.titleField"
+            filled
+            label="titleField"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            type="text"
+          />
+          <q-input
+            v-model="storeN.data.descField"
+            filled
+            label="descField"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            type="textarea"
+          />
+          <q-input
+            v-model="storeN.data.dateField"
+            clearable
+            filled
+            label="dateField"
+            :rules="[(v) => (v != null && v != '') || 'dateField - Choose!']"
+            type="date"
+          />
           <div class="row justify-end q-mb-md">
-            <q-checkbox v-model="storeN.data.boolField" label="boolField" />
+            <q-checkbox v-model="storeN.data.boolField" filled label="boolField" />
           </div>
-          <q-input v-model="storeN.data.priceField" label="priceField" type="number" />
+          <q-input
+            v-model="storeN.data.priceField"
+            filled
+            label="priceField"
+            mask="currency"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
+            thousands-separator=" "
+            type="number"
+          />
           <q-input
             v-model="storeN.data.imgField"
             clearable
+            filled
             label="imgField"
-            lazy-rules="ondemand"
-            :rules="[(v) => v != null || 'Choose!']"
+            :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
             type="url"
           />
           <div class="row justify-center">
