@@ -1,11 +1,10 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
 import { Notify, Loading } from "quasar";
-// import { Dialog, Loading } from "quasar";
 
 Notify.setDefaults({
   position: "bottom",
-  textColor: "yellow",
+  textColor: "white",
   timeout: 3000,
   actions: [{ icon: "close", color: "white" }],
 });
@@ -27,7 +26,7 @@ interface IFields {
 }
 
 interface IState {
-  errormsg: string;
+  msg: string; // last message on "N" side
   loading: boolean;
   dataN: Array<IFields>;
   data: IFields; // for edit and new record
@@ -36,7 +35,7 @@ interface IState {
 export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
-    errormsg: "",
+    msg: "",
     loading: false,
     dataN: [],
     data: {},
@@ -51,10 +50,9 @@ export const useStoreN = defineStore({
       this.loading = false;
       Loading.hide();
     },
-    showError(msg: string): void {
-      this.errormsg = msg;
-      // Dialog.create({ title: "Error on N-side", message: msg });
-      Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+    showMessage(message: string): void {
+      this.msg = message;
+      Notify.create({ message: `Error on N-side: ${message}`, color: "negative" });
     },
     async getAll(): Promise<void> {
       this.loadingShow();
@@ -64,13 +62,13 @@ export const useStoreN = defineStore({
         .then((res) => {
           this.loadingHide();
           if (res && res.data) {
-            this.errormsg = "";
+            this.msg = "Get all documents was successfully!";
             this.dataN = res.data;
           }
         })
         .catch((error) => {
           this.loadingHide();
-          this.showError(error.message);
+          this.showMessage(error.message);
         });
     },
     async getById(): Promise<void> {
@@ -81,13 +79,13 @@ export const useStoreN = defineStore({
           .then((res) => {
             this.loadingHide();
             if (res && res.data) {
-              this.errormsg = "";
+              this.msg = `Get document with id=${res.data.id} was successfully!`;
               this.data = res.data;
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showError(error.message);
+            this.showMessage(error.message);
           });
       }
     },
@@ -99,34 +97,40 @@ export const useStoreN = defineStore({
           .then((res) => {
             this.loadingHide();
             if (res && res.data) {
-              this.errormsg = "";
               this.data = {};
-              // Dialog.create({ title: "Edit document", message: "Success!" });
-              Notify.create({ message: "Edit document: Success!", color: "positive" });
+              this.getAll();
+              Notify.create({
+                message: `Document with id=${res.data.id} has been edited successfully!`,
+                color: "positive",
+              });
+              this.msg = `Document with id=${res.data.id} has been edited successfully!`;
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showError(error.message);
+            this.showMessage(error.message);
           });
       }
     },
     async deleteById(): Promise<void> {
       if (this.data && this.data.id) {
         this.loadingShow();
+        const id = this.data.id;
         $axios
           .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
             this.loadingHide();
-            this.errormsg = "";
-            this.data = {};
             this.getAll();
-            // Dialog.create({ title: "Delete document", message: "Success!" });
-            Notify.create({ message: "Delete document: Success!", color: "positive" });
+            this.data = {};
+            Notify.create({
+              message: `Document with id=${id} has been deleted successfully!`,
+              color: "positive",
+            });
+            this.msg = `Document with id=${id} has been deleted successfully!`;
           })
           .catch((error) => {
             this.loadingHide();
-            this.showError(error.message);
+            this.showMessage(error.message);
           });
       }
     },
@@ -139,15 +143,18 @@ export const useStoreN = defineStore({
           .then((res) => {
             this.loadingHide();
             if (res && res.data) {
-              this.errormsg = "";
-              this.data = {};
-              // Dialog.create({ title: "Create document", message: "Success!" });
-              Notify.create({ message: "Save new document: Success!", color: "positive" });
+              // this.data = {};
+              this.getAll();
+              Notify.create({
+                message: `New document with id=${res.data.id} has been saved successfully!`,
+                color: "positive",
+              });
+              this.msg = `New document with id=${res.data.id} has been saved successfully!`;
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showError(error.message);
+            this.showMessage(error.message);
           });
       }
     },

@@ -24,6 +24,9 @@
               {{ e.category!.nameField }} -
               {{ new Date(e.dateField!).toLocaleDateString() }}
             </div>
+            <div class="text-h7 absolute-bottom text-left">
+              {{ e.titleField }}
+            </div>
           </q-img>
           <q-card-section>
             <q-badge v-if="e.boolField" color="green" label="yes" outline />
@@ -36,14 +39,14 @@
         </q-card>
       </div>
       <!-- Show/hide error message in a banner: -->
-      <div class="row justify-center absolute-bottom">
-        <q-banner v-if="storeN.errormsg" class="text-white bg-red q-mb-md" inline-actions rounded>
-          <span>{{ storeN.errormsg }}</span>
+      <!-- <div class="row justify-center absolute-bottom">
+        <q-banner v-if="storeN.msg" class="text-white bg-red q-mb-md" inline-actions rounded>
+          <span>{{ storeN.msg }}</span>
           <template #action>
-            <q-btn flat icon="close" round @click="storeN.errormsg = ''" />
+            <q-btn flat icon="close" round @click="storeN.msg = ''" />
           </template>
         </q-banner>
-      </div>
+      </div> -->
     </div>
   </q-page>
 </template>

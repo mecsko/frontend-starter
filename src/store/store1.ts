@@ -17,7 +17,7 @@ interface IFields {
 
 interface IState {
   loading: boolean;
-  errormsg: string;
+  msg: string;
   data1: Array<IFields>;
   data: IFields;
 }
@@ -26,7 +26,7 @@ export const useStore1 = defineStore({
   id: "store1",
   state: (): IState => ({
     loading: false,
-    errormsg: "",
+    msg: "",
     data1: [],
     data: {},
   }),
@@ -41,7 +41,7 @@ export const useStore1 = defineStore({
       Loading.hide();
     },
     showError(msg: string): void {
-      this.errormsg = msg;
+      this.msg = msg;
       // Dialog.create({ title: "Error on 1-side", message: msg });
       Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
     },
@@ -53,7 +53,7 @@ export const useStore1 = defineStore({
         .then((res) => {
           this.loadingHide();
           if (res && res.data) {
-            this.errormsg = "";
+            this.msg = "";
             this.data1 = res.data;
           }
         })
