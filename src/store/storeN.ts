@@ -28,8 +28,8 @@ interface IFields {
 interface IState {
   msg: string; // last message on "N" side
   loading: boolean;
-  dataN: Array<IFields>;
-  data: IFields; // for edit and new record
+  dataN: Array<IFields>; // get all and filtered records
+  data: IFields; // new, edit and delete record
 }
 
 export const useStoreN = defineStore({
@@ -50,7 +50,7 @@ export const useStoreN = defineStore({
       this.loading = false;
       Loading.hide();
     },
-    showMessage(message: string): void {
+    showErrorMessage(message: string): void {
       this.msg = message;
       Notify.create({ message: `Error on N-side: ${message}`, color: "negative" });
     },
@@ -62,13 +62,12 @@ export const useStoreN = defineStore({
         .then((res) => {
           this.loadingHide();
           if (res && res.data) {
-            this.msg = "Get all documents was successfully!";
             this.dataN = res.data;
           }
         })
         .catch((error) => {
           this.loadingHide();
-          this.showMessage(error.message);
+          this.showErrorMessage(error.message);
         });
     },
     async getById(): Promise<void> {
@@ -79,13 +78,12 @@ export const useStoreN = defineStore({
           .then((res) => {
             this.loadingHide();
             if (res && res.data) {
-              this.msg = `Get document with id=${res.data.id} was successfully!`;
               this.data = res.data;
             }
           })
           .catch((error) => {
             this.loadingHide();
-            this.showMessage(error.message);
+            this.showErrorMessage(error.message);
           });
       }
     },
@@ -108,7 +106,7 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             this.loadingHide();
-            this.showMessage(error.message);
+            this.showErrorMessage(error.message);
           });
       }
     },
@@ -130,7 +128,7 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             this.loadingHide();
-            this.showMessage(error.message);
+            this.showErrorMessage(error.message);
           });
       }
     },
@@ -154,7 +152,7 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             this.loadingHide();
-            this.showMessage(error.message);
+            this.showErrorMessage(error.message);
           });
       }
     },

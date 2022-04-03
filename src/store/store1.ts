@@ -40,9 +40,8 @@ export const useStore1 = defineStore({
       this.loading = false;
       Loading.hide();
     },
-    showError(msg: string): void {
+    showErrorMessage(msg: string): void {
       this.msg = msg;
-      // Dialog.create({ title: "Error on 1-side", message: msg });
       Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
     },
     async getAll(): Promise<void> {
@@ -53,14 +52,13 @@ export const useStore1 = defineStore({
         .then((res) => {
           this.loadingHide();
           if (res && res.data) {
-            this.msg = "";
             this.data1 = res.data;
           }
         })
         .catch((error) => {
           this.loading = false;
           Loading.hide();
-          this.showError(error.message);
+          this.showErrorMessage(error.message);
         });
     },
   },
