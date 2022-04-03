@@ -30,6 +30,7 @@ interface IState {
   loading: boolean;
   dataN: Array<IFields>; // get all and filtered records
   data: IFields; // new, edit and delete record
+  dataOld: IFields; // before edit data, to compare for changes
 }
 
 export const useStoreN = defineStore({
@@ -39,6 +40,7 @@ export const useStoreN = defineStore({
     loading: false,
     dataN: [],
     data: {},
+    dataOld: {},
   }),
   getters: {},
   actions: {
@@ -79,6 +81,7 @@ export const useStoreN = defineStore({
             this.loadingHide();
             if (res && res.data) {
               this.data = res.data;
+              this.dataOld = JSON.parse(JSON.stringify(this.data));
             }
           })
           .catch((error) => {
@@ -89,9 +92,22 @@ export const useStoreN = defineStore({
     },
     async editById(): Promise<void> {
       if (this.data && this.data.id) {
+        const diff: any = {};
+        Object.keys(this.data).forEach((k, i) => {
+          const newValue = Object.values(this.data)[i];
+          const oldValue = Object.values(this.dataOld)[i];
+          if (newValue != oldValue) diff[k] = newValue;
+        });
+        if (Object.keys(diff).length == 0) {
+          Notify.create({
+            message: "Nothing changed!",
+            color: "negative",
+          });
+          process.exit(0);
+        }
         this.loadingShow();
         $axios
-          .put(`api/advertisements/${this.data.id}`, this.data)
+          .patch(`api/advertisements/${this.data.id}`, diff)
           .then((res) => {
             this.loadingHide();
             if (res && res.data) {
