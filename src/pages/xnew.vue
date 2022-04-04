@@ -11,6 +11,7 @@
   onMounted(() => {
     store1.getAll();
     storeN.msg = "";
+    storeN.data = {};
     onReset(); // set default settings
   });
 
