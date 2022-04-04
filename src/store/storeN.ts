@@ -27,10 +27,10 @@ interface IFields {
 
 interface IState {
   msg: string; // last message on "N" side
-  loading: boolean;
-  dataN: Array<IFields>; // get all and filtered records
-  data: IFields; // new, edit and delete record
-  dataOld: IFields; // before edit data, to compare for changes
+  loading: boolean; // true if waiting for backend response
+  dataN: Array<IFields>; // store documents (records) after get method(s)
+  data: IFields; // temporary object for new, edit and delete method
+  dataOld: IFields; // temporary object, before edit store data here
 }
 
 export const useStoreN = defineStore({
@@ -81,7 +81,8 @@ export const useStoreN = defineStore({
             this.loadingHide();
             if (res && res.data) {
               this.data = res.data;
-              this.dataOld = JSON.parse(JSON.stringify(this.data));
+              Object.assign(this.dataOld, this.data);
+              // this.dataOld = JSON.parse(JSON.stringify(this.data));
             }
           })
           .catch((error) => {

@@ -16,10 +16,9 @@ interface IFields {
 }
 
 interface IState {
-  loading: boolean;
-  msg: string;
-  data1: Array<IFields>;
-  data: IFields;
+  loading: boolean; // true if waiting for backend response
+  msg: string; // last message on "1"-side
+  data1: Array<IFields>; // store documents (records) after get method
 }
 
 export const useStore1 = defineStore({
@@ -28,7 +27,6 @@ export const useStore1 = defineStore({
     loading: false,
     msg: "",
     data1: [],
-    data: {},
   }),
   getters: {},
   actions: {
