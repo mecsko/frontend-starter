@@ -14,7 +14,7 @@
 
   onMounted(() => {
     // show left drawer on start
-    leftDrawerOpen.value = true;
+    leftDrawerOpen.value = false;
     // show toolbar on start
     toolbarShow.value = true;
   });
