@@ -31,6 +31,7 @@
           </q-avatar>
           Szoftverfejlesztő és tesztelő vizsga - Frontend programozási feladat
         </q-toolbar-title>
+        <q-btn dense flat icon="mdi-menu" round @click="toggleLeftDrawer" />
       </q-toolbar>
     </q-header>
 
