@@ -1,6 +1,7 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
 import { Notify, Loading } from "quasar";
+// import router from "src/router";
 
 Notify.setDefaults({
   position: "bottom",
@@ -146,6 +147,7 @@ export const useStoreN = defineStore({
                 message: `New document with id=${res.data.id} has been saved successfully!`,
                 color: "positive",
               });
+              // router.push({ name: "page_name" });
             }
           })
           .catch((error) => {
