@@ -26,8 +26,6 @@ interface IFields {
 }
 
 interface IState {
-  msg: string; // last message on "N" side
-  loading: boolean; // true if waiting for backend response
   dataN: Array<IFields>; // store documents (records) after get method(s)
   data: IFields; // temporary object for new, edit and delete method
   dataOld: IFields; // temporary object, before edit store data here
@@ -36,49 +34,35 @@ interface IState {
 export const useStoreN = defineStore({
   id: "storeN",
   state: (): IState => ({
-    msg: "",
-    loading: false,
     dataN: [],
     data: {},
     dataOld: {},
   }),
   getters: {},
   actions: {
-    loadingShow(): void {
-      this.loading = true;
-      Loading.show();
-    },
-    loadingHide(): void {
-      this.loading = false;
-      Loading.hide();
-    },
-    showErrorMessage(message: string): void {
-      this.msg = message;
-      Notify.create({ message: `Error on N-side: ${message}`, color: "negative" });
-    },
     async getAll(): Promise<void> {
-      this.loadingShow();
+      Loading.show();
       this.dataN = [];
       $axios
         .get("api/advertisements2")
         .then((res) => {
-          this.loadingHide();
+          Loading.hide();
           if (res && res.data) {
             this.dataN = res.data;
           }
         })
         .catch((error) => {
-          this.loadingHide();
-          this.showErrorMessage(error.message);
+          Loading.hide();
+          Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
         });
     },
     async getById(): Promise<void> {
       if (this.data && this.data.id) {
-        this.loadingShow();
+        Loading.show();
         $axios
           .get(`api/advertisements/${this.data.id}`)
           .then((res) => {
-            this.loadingHide();
+            Loading.hide();
             if (res && res.data) {
               this.data = res.data;
               Object.assign(this.dataOld, this.data);
@@ -86,8 +70,8 @@ export const useStoreN = defineStore({
             }
           })
           .catch((error) => {
-            this.loadingHide();
-            this.showErrorMessage(error.message);
+            Loading.hide();
+            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
           });
       }
     },
@@ -106,11 +90,11 @@ export const useStoreN = defineStore({
           });
           process.exit(0);
         }
-        this.loadingShow();
+        Loading.show();
         $axios
           .patch(`api/advertisements/${this.data.id}`, diff)
           .then((res) => {
-            this.loadingHide();
+            Loading.hide();
             if (res && res.data) {
               this.data = {};
               this.getAll();
@@ -118,45 +102,43 @@ export const useStoreN = defineStore({
                 message: `Document with id=${res.data.id} has been edited successfully!`,
                 color: "positive",
               });
-              this.msg = `Document with id=${res.data.id} has been edited successfully!`;
             }
           })
           .catch((error) => {
-            this.loadingHide();
-            this.showErrorMessage(error.message);
+            Loading.hide();
+            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
           });
       }
     },
     async deleteById(): Promise<void> {
       if (this.data && this.data.id) {
-        this.loadingShow();
+        Loading.show();
         const id = this.data.id;
         $axios
           .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
-            this.loadingHide();
+            Loading.hide();
             this.getAll();
             this.data = {};
             Notify.create({
               message: `Document with id=${id} has been deleted successfully!`,
               color: "positive",
             });
-            this.msg = `Document with id=${id} has been deleted successfully!`;
           })
           .catch((error) => {
-            this.loadingHide();
-            this.showErrorMessage(error.message);
+            Loading.hide();
+            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
           });
       }
     },
     async create(): Promise<void> {
       if (this.data) {
-        this.loadingShow();
+        Loading.show();
         delete this.data.category;
         $axios
           .post("api/advertisements", this.data)
           .then((res) => {
-            this.loadingHide();
+            Loading.hide();
             if (res && res.data) {
               // this.data = {};
               this.getAll();
@@ -164,12 +146,11 @@ export const useStoreN = defineStore({
                 message: `New document with id=${res.data.id} has been saved successfully!`,
                 color: "positive",
               });
-              this.msg = `New document with id=${res.data.id} has been saved successfully!`;
             }
           })
           .catch((error) => {
-            this.loadingHide();
-            this.showErrorMessage(error.message);
+            Loading.hide();
+            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
           });
       }
     },

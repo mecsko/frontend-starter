@@ -103,16 +103,6 @@
           {{ storeN.data }}
         </q-form>
       </div>
-
-      <!-- Show/hide error message in a banner: -->
-      <!-- <div class="row justify-center absolute-bottom">
-        <q-banner v-if="storeN.msg" class="text-white bg-red q-mb-md" inline-actions rounded>
-          <span>{{ storeN.msg }}</span>
-          <template #action>
-            <q-btn flat icon="close" round @click="storeN.msg = ''" />
-          </template>
-        </q-banner>
-      </div> -->
     </div>
   </q-page>
 </template>

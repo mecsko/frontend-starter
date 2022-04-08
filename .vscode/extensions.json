@@ -6,6 +6,7 @@
         "christian-kohler.path-intellisense",
         "rangav.vscode-thunder-client",
         "antfu.iconify",
-        "ms-edgedevtools.vscode-edge-devtools"
+        "ms-edgedevtools.vscode-edge-devtools",
+        "sdras.vue-vscode-snippets"
     ]
 }

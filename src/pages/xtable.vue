@@ -45,7 +45,6 @@
         v-model:selected="selected"
         :columns="columns"
         dense
-        :loading="storeN.loading"
         :rows="storeN.dataN"
         selection="single"
         title="Advertisements"
