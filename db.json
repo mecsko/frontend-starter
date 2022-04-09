@@ -2,7 +2,7 @@
   "advertisements": [
     {
       "id": 1,
-      "categoryId": 7,
+      "categoryId": 2,
       "titleField": "Renault Trafic 1.9 dCi L1H2 Business",
       "descField": "A HŰTŐ HIBÁTLANUL MŰKÖDIK. Az autóhoz fél év szavatosság, és km igazolás jár. Az autó felszereltségének ellenőrzése megtekintéskor a vevő felelőssége, utólag kiderülő eltérésre semmilyen felelősséget nem áll módunkban vállalni!",
       "dateField": "2022-02-21",
@@ -164,31 +164,31 @@
   "categories": [
     {
       "id": 1,
-      "nameField": "Személyautó"
+      "categoryNameField": "Személyautó"
     },
     {
       "id": 2,
-      "nameField": "Kishaszonjármű"
+      "categoryNameField": "Kishaszonjármű"
     },
     {
       "id": 3,
-      "nameField": "Munkagép"
+      "categoryNameField": "Munkagép"
     },
     {
       "id": 4,
-      "nameField": "Motorkerékpár"
+      "categoryNameField": "Motorkerékpár"
     },
     {
       "id": 5,
-      "nameField": "Autóbusz"
+      "categoryNameField": "Autóbusz"
     },
     {
       "id": 6,
-      "nameField": "Lakókocsi"
+      "categoryNameField": "Lakókocsi"
     },
     {
       "id": 7,
-      "nameField": "Hajó"
+      "categoryNameField": "Hajó"
     }
   ]
 }

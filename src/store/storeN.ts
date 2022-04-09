@@ -22,7 +22,7 @@ interface IFields {
   // JSON-server and MongoDb-populate() return field(s) with object type from the "1"-side:
   category?: {
     id?: number;
-    nameField?: string;
+    categoryNameField?: string;
   };
 }
 
@@ -67,7 +67,6 @@ export const useStoreN = defineStore({
             if (res && res.data) {
               this.data = res.data;
               Object.assign(this.dataOld, this.data);
-              // this.dataOld = JSON.parse(JSON.stringify(this.data));
             }
           })
           .catch((error) => {

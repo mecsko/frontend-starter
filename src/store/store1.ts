@@ -1,7 +1,6 @@
 import $axios from "./axios.instance";
 import { defineStore } from "pinia";
 import { Notify, Loading } from "quasar";
-// import { Dialog, Loading } from "quasar";
 
 Notify.setDefaults({
   position: "bottom",
@@ -12,7 +11,7 @@ Notify.setDefaults({
 
 interface IFields {
   id?: number;
-  nameField?: string;
+  categoryNameField?: string;
 }
 
 interface IState {
@@ -26,9 +25,6 @@ export const useStore1 = defineStore({
   }),
   getters: {},
   actions: {
-    showErrorMessage(msg: string): void {
-      Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
-    },
     async getAll(): Promise<void> {
       Loading.show();
       this.data1 = [];

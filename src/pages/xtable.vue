@@ -16,7 +16,7 @@
   }
 
   // JSON-server and MongoDb-populate() return field(s) with object type from the "1"-side:
-  // field: (row: any) => row.category.nameField,
+  // field: (row: any) => row.category.categoryNameField,
 
   // sort with: sortable: true
   // align with (default right): align: "center"
@@ -31,7 +31,7 @@
     {
       name: "category",
       label: "category",
-      field: (row: any) => row.category.nameField,
+      field: (row: any) => row.category.categoryNameField,
       align: "center",
     },
     { name: "imgField", label: "imgField", field: "imgField", align: "center" },

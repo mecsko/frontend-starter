@@ -21,7 +21,7 @@
         <q-card class="q-ma-md">
           <q-img :src="e.imgField">
             <div class="text-h7 absolute-top text-right">
-              {{ e.category!.nameField }} -
+              {{ e.category!.categoryNameField }} -
               {{ new Date(e.dateField!).toLocaleDateString() }}
             </div>
             <div class="text-h7 absolute-bottom text-left">

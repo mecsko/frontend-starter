@@ -56,9 +56,9 @@
             clearable
             emit-value
             filled
-            label="nameField"
+            label="categoryNameField"
             map-options
-            option-label="nameField"
+            option-label="categoryNameField"
             option-value="id"
             :options="store1.data1"
             :rules="[(v) => v != null || 'Please choose one!']"
