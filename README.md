@@ -1,4 +1,4 @@
-# `Vite 2.x + Vue 3.x + Quasar 2.x starter template for Jedlik exams`
+# `Vue 3.x + Quasar 2.x starter template with Vite for Jedlik exams`
 
 ## Use Take Over Mode instead of TS Plugin
 Disable built-in TypeScript extension:
@@ -15,6 +15,11 @@ As an asynchronous event-driven JavaScript runtime, [Node.js](https://nodejs.org
 ## Vue.js
 [Vue.js](https://vuejs.org/) is an approachable, performant and versatile framework for building web user interfaces.
 
+## Vue.js 3 Composition API
+[Composition API](https://vuejs.org/api/composition-api-setup.html) is a set of APIs that allows us to author Vue components using imported functions instead of declaring options.
+
+## Vue.js 3 SFC and "script setup"
+["script setup"](https://vuejs.org/api/sfc-script-setup.html) is a compile-time syntactic sugar for using Composition API inside Single File Components (SFCs). It is the recommended syntax if you are using both SFCs and Composition API.
 
 ## vue-global-api
 Use Vue Composition API globally instead of import APIs from vue in every file. [GitHub](https://github.com/antfu/vue-global-api)
