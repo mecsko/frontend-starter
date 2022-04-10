@@ -1,12 +1,10 @@
 1. GitHub repo klónozása, átnevezése
-2. Források, backend szerver másolása
-3. Backend szerver indítása
-4. Projekt megnyitása VS Code-al
-5. Quasar csomagverziók frissítése, ha kéri a feladat, Node.js csomagok telepítése
-6. Backend szerver - Base URL és port beállítása: src/store/axios.instance.ts
-7. "1"-oldali store IFields interface és axios URL aktualizálása: src/store/store1.ts
-8. "N"-oldali store IFields interface és actions metódusok aktualizálása: src/store/storeN.ts
-9. Nyitó oldal elkészítése: src/pages/index.vue
-10. Komponensek (oldalak) elkészítése (save as): src/pages mappában
-11. Nyitó oldalon a route-ok beállítása
-12. Menük kikapcsolása igény szerint: leftDrawerOpen, toolbarShow: src/layouts/default.vue
+    https://github.com/nitslaszlo/jedlik-frontend-starter
+2. Források, backend szerver másolása, backend szerver indítása
+3. Sablon megnyitása, Quasar csomagverziók frissítése (ha kéri a feladat), Node.js csomagok telepítése
+4. Axios backend szerver beállítása - Base URL és port: src/store/axios.instance.ts
+5. "1"-oldali store IFields interface és axios URL aktualizálása: src/store/store1.ts
+6. "N"-oldali store IFields interface és actions metódusok aktualizálása: src/store/storeN.ts
+7. Nyitó oldal elkészítése: src/pages/index.vue
+8. Komponensek (oldalak) elkészítése: src/pages mappában
+9. "Takarítás", menük ki-be kapcsolása igény szerint: leftDrawerOpen, toolbarShow: src/layouts/default.vue
