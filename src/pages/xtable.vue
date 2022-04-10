@@ -18,22 +18,14 @@
   // Columns def template:
   // const cols: any[] = [
   //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
-  //   { name: "", label: "", field: "", align:"center" },
   // ];
 
-  //  Slot for table column
-  // <template #body-cell-fieldName="props">
-  //   <q-td :props="props">
-  //   </q-td>
-  // </template>
+  /*  Slot for table column
+    <template #body-cell-fieldName="props">
+      <q-td :props="props">
+      </q-td>
+    </template>
+  */
 
   // JSON-server and MongoDb-populate() return field(s) with object type from the "1"-side:
   // field: (row: any) => row.category.categoryNameField,

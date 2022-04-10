@@ -7,8 +7,8 @@
         "rangav.vscode-thunder-client",
         "antfu.iconify",
         "ms-edgedevtools.vscode-edge-devtools",
-        "sdras.vue-vscode-snippets",
         "eg2.vscode-npm-script",
-        "formulahendry.auto-rename-tag"
+        "formulahendry.auto-rename-tag",
+        "hollowtree.vue-snippets"
     ]
 }
