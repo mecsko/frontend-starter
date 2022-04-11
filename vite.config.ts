@@ -28,12 +28,6 @@ export default defineConfig({
     "process.env": {},
   },
   build: {
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
     // reportCompressedSize: true,
     chunkSizeWarningLimit: 1024,
     rollupOptions: {

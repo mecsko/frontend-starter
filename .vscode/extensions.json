@@ -9,6 +9,6 @@
         "ms-edgedevtools.vscode-edge-devtools",
         "eg2.vscode-npm-script",
         "formulahendry.auto-rename-tag",
-        "hollowtree.vue-snippets"
+        "johnsoncodehk.vscode-typescript-vue-plugin"
     ]
 }
