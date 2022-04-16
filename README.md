@@ -1,5 +1,12 @@
 # `Vue 3.x + Quasar 2.x starter template with Vite for Jedlik exams`
-# Technologies
+
+# For proper intellisense in template block
+When created a new *.vue file or rename one you must to restart Volar language server:<br>
+1. F1 -> Command palette<br>
+2. Volar: Restart Vue server<br>
+
+
+# Used technologies
 ## Node.js
 As an asynchronous event-driven JavaScript runtime, [Node.js](https://nodejs.org/en/) is designed to build scalable network applications. 
 
