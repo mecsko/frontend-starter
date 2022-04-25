@@ -38,7 +38,11 @@ export const useStore1 = defineStore({
         })
         .catch((error) => {
           Loading.hide();
-          Notify.create({ message: `Error on 1-side: ${error.message}`, color: "negative" });
+          let msg: any = error.message;
+          if (error.response.data.message) {
+            msg = error.response.data.message;
+          }
+          Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
         });
     },
   },

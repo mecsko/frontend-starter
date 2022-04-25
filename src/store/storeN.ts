@@ -54,7 +54,11 @@ export const useStoreN = defineStore({
         })
         .catch((error) => {
           Loading.hide();
-          Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
+          let msg: any = error.message;
+          if (error.response.data.message) {
+            msg = error.response.data.message;
+          }
+          Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
         });
     },
     async getById(): Promise<void> {
@@ -71,7 +75,11 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             Loading.hide();
-            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
+            let msg: any = error.message;
+            if (error.response.data.message) {
+              msg = error.response.data.message;
+            }
+            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
           });
       }
     },
@@ -106,7 +114,11 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             Loading.hide();
-            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
+            let msg: any = error.message;
+            if (error.response.data.message) {
+              msg = error.response.data.message;
+            }
+            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
           });
       }
     },
@@ -127,7 +139,11 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             Loading.hide();
-            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
+            let msg: any = error.message;
+            if (error.response.data.message) {
+              msg = error.response.data.message;
+            }
+            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
           });
       }
     },
@@ -151,7 +167,11 @@ export const useStoreN = defineStore({
           })
           .catch((error) => {
             Loading.hide();
-            Notify.create({ message: `Error on N-side: ${error.message}`, color: "negative" });
+            let msg: any = error.message;
+            if (error.response.data.message) {
+              msg = error.response.data.message;
+            }
+            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
           });
       }
     },
