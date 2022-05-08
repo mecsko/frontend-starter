@@ -18,6 +18,15 @@ interface IState {
   data1: Array<IFields>; // store documents (records) after get method
 }
 
+function ShowErrorWithNotify(error: any): void {
+  Loading.hide();
+  let msg = `Error on 1-side: ${error.response.status} ${error.response.statusText}`;
+  if (error.response.data) {
+    msg += ` - ${error.response.data}`;
+  }
+  Notify.create({ message: msg, color: "negative" });
+}
+
 export const useStore1 = defineStore({
   id: "store1",
   state: (): IState => ({
@@ -37,12 +46,7 @@ export const useStore1 = defineStore({
           }
         })
         .catch((error) => {
-          Loading.hide();
-          let msg: any = error.message;
-          if (error.response.data.message) {
-            msg = error.response.data.message;
-          }
-          Notify.create({ message: `Error on 1-side: ${msg}`, color: "negative" });
+          ShowErrorWithNotify(error);
         });
     },
   },

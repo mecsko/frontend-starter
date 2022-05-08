@@ -28,8 +28,17 @@ interface IFields {
 
 interface IState {
   dataN: Array<IFields>; // store documents (records) after get method(s)
-  data: IFields; // temporary object for new, edit and delete method
-  dataOld: IFields; // temporary object, before edit store data here
+  data: IFields; // temporary object for create, edit and delete method
+  dataOld: IFields; // temporary object for patch method (store data here before edit)
+}
+
+function ShowErrorWithNotify(error: any): void {
+  Loading.hide();
+  let msg = `Error on N-side: ${error.response.status} ${error.response.statusText}`;
+  if (error.response.data) {
+    msg += ` - ${error.response.data}`;
+  }
+  Notify.create({ message: msg, color: "negative" });
 }
 
 export const useStoreN = defineStore({
@@ -53,12 +62,7 @@ export const useStoreN = defineStore({
           }
         })
         .catch((error) => {
-          Loading.hide();
-          let msg: any = error.message;
-          if (error.response.data.message) {
-            msg = error.response.data.message;
-          }
-          Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+          ShowErrorWithNotify(error);
         });
     },
     async getById(): Promise<void> {
@@ -74,12 +78,7 @@ export const useStoreN = defineStore({
             }
           })
           .catch((error) => {
-            Loading.hide();
-            let msg: any = error.message;
-            if (error.response.data.message) {
-              msg = error.response.data.message;
-            }
-            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+            ShowErrorWithNotify(error);
           });
       }
     },
@@ -113,12 +112,7 @@ export const useStoreN = defineStore({
             }
           })
           .catch((error) => {
-            Loading.hide();
-            let msg: any = error.message;
-            if (error.response.data.message) {
-              msg = error.response.data.message;
-            }
-            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+            ShowErrorWithNotify(error);
           });
       }
     },
@@ -138,12 +132,7 @@ export const useStoreN = defineStore({
             });
           })
           .catch((error) => {
-            Loading.hide();
-            let msg: any = error.message;
-            if (error.response.data.message) {
-              msg = error.response.data.message;
-            }
-            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+            ShowErrorWithNotify(error);
           });
       }
     },
@@ -166,12 +155,7 @@ export const useStoreN = defineStore({
             }
           })
           .catch((error) => {
-            Loading.hide();
-            let msg: any = error.message;
-            if (error.response.data.message) {
-              msg = error.response.data.message;
-            }
-            Notify.create({ message: `Error on N-side: ${msg}`, color: "negative" });
+            ShowErrorWithNotify(error);
           });
       }
     },

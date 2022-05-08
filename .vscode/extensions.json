@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "johnsoncodehk.volar",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "christian-kohler.path-intellisense",
@@ -9,6 +8,7 @@
         "ms-edgedevtools.vscode-edge-devtools",
         "eg2.vscode-npm-script",
         "formulahendry.auto-rename-tag",
-        "johnsoncodehk.vscode-typescript-vue-plugin"
+        "vue.volar",
+        "vue.vscode-typescript-vue-plugin"
     ]
 }

@@ -10,7 +10,7 @@
     "format": "prettier --write ./**/*.{vue,ts,tsx,js,jsx,css,less,scss,json,md}"
   },
   "dependencies": {
-    "@quasar/extras": "^1.13.5",
+    "@quasar/extras": "^1.13.6",
     "axios": "^0.26.1",
     "pinia": "^2.0.13",
     "quasar": "^2.6.6",
