@@ -42,5 +42,4 @@
     },
     "vscode-edge-devtools.mirrorEdits": true,
     "vscode-edge-devtools.webhint": false,
-    "json.schemaDownload.enable": false,
   }
