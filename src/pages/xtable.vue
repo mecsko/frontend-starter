@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { useStoreN } from "../store/storeN";
+  import { onMounted, ref } from "vue";
   const storeN = useStoreN();
 
   onMounted(() => {

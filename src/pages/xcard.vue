@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import router from "src/router";
   import { useStoreN } from "../store/storeN";
+  import { onMounted } from "vue";
 
   const storeN = useStoreN();
 

@@ -2,6 +2,7 @@
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
   import { date, Dialog } from "quasar";
+  import { onMounted, onUnmounted } from "vue";
   import router from "src/router";
 
   const storeN = useStoreN();

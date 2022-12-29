@@ -2,6 +2,7 @@
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
   import { Dialog } from "quasar";
+  import { onMounted, ref } from "vue";
 
   const store1 = useStore1();
   const storeN = useStoreN();

@@ -1,14 +1,14 @@
 {
     "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "christian-kohler.path-intellisense",
-        "rangav.vscode-thunder-client",
-        "antfu.iconify",
-        "ms-edgedevtools.vscode-edge-devtools",
-        "eg2.vscode-npm-script",
-        "formulahendry.auto-rename-tag",
-        "vue.volar",
-        "vue.vscode-typescript-vue-plugin"
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "christian-kohler.path-intellisense",
+      "antfu.iconify",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.npm-intellisense",
+      "codecoaching.quasar-docs",
+      "vue.volar",
+      "formulahendry.auto-close-tag",
     ]
-}
+  }
+  

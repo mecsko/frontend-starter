@@ -1,9 +1,15 @@
 # `Vue 3.x + Quasar 2.x starter template with Vite for Jedlik exams`
 
-# For proper intellisense in template block
-When created a new *.vue file or rename one you must to restart Volar language server:<br>
-1. F1 -> Command palette<br>
-2. Volar: Restart Vue server<br>
+# Take Over Mode
+To get Vue SFCs and TypeScript working together, Volar creates a separate TS language service instance patched with Vue-specific support, and uses it in Vue SFCs. At the same time, plain TS files are still handled by VSCode's built-in TS language service, which is why we need TypeScript Vue Plugin to support Vue SFC imports in TS files. This default setup works, but for each project we are running two TS language service instances: one from Volar, one from VSCode's built-in service. This is a bit inefficient and can lead to performance issues in large projects.
+
+Volar provides a feature called "Takeover Mode" to improve performance. In takeover mode, Volar provides support for both Vue and TS files using a single TS language service instance.
+## Enable Take Over Mode
+
+1. Disable built-in TypeScript extension:
+- Run Extensions: Show Built-in Extensions command
+- Find "TypeScript and JavaScript Language Features", right click and select: Disable (Workspace)
+2. Reload VSCode
 
 
 # Used technologies
@@ -19,9 +25,6 @@ As an asynchronous event-driven JavaScript runtime, [Node.js](https://nodejs.org
 ## Vue.js 3 SFC and "script setup"
 ["script setup"](https://vuejs.org/api/sfc-script-setup.html) is a compile-time syntactic sugar for using Composition API inside Single File Components (SFCs). It is the recommended syntax if you are using both SFCs and Composition API.
 
-## vue-global-api
-Use Vue Composition API globally instead of import APIs from vue in every file. [GitHub](https://github.com/antfu/vue-global-api)
-
 ## TypeScript
 [TypeScript](https://www.typescriptlang.org/) is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
@@ -36,15 +39,6 @@ With [Quasar](https://quasar.dev/) you can build effortlessly build high-perform
 
 ## Vite
 [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects. It consists a dev server that provides rich feature enhancements over native ES modules, for example extremely fast Hot Module Replacement (HMR).
-
-## vite-plugin-pages
-File system based routing for Vue 3 / React applications using Vite. [GitHub](https://github.com/hannoeru/vite-plugin-pages)
-
-## vite-plugin-vue-layouts
-Router based layout for Vue 3 applications using Vite. [GitHub](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
-
-## Typescript
-[TypeScript](https://www.typescriptlang.org/) is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
 ## ESlint
 [ESLint](https://eslint.org/) statically analyzes your code to quickly find problems. Many problems ESLint finds can be automatically fixed. Preprocess code, use custom parsers, and write your own rules that work alongside ESLint's built-in rules. You can customize ESLint to work exactly the way you need it for your project.

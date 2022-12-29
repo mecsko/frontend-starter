@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <q-page></q-page>
+  <q-page>empty</q-page>
 </template>
 
 <style lang="scss" scoped></style>
