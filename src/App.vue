@@ -3,18 +3,18 @@
 <script setup lang="ts">
   import router from "src/router";
   import { useAppStore } from "./store/appStore";
-  // import { onMounted, ref } from "vue";
+  // import { onMounted } from "vue";
 
   const appStore = useAppStore();
 
   // onMounted(() => {
   // });
 
-  function leftMenuItems() {
+  function menuItems() {
     return [
       {
         icon: "mdi-home",
-        text: "startPage",
+        text: "Start Page",
         name: "startPage",
         route: "/",
         disabled: false,
@@ -23,7 +23,7 @@
       {
         icon: "mdi-application-outline",
         text: "Empty page",
-        name: "emty",
+        name: "emtyPage",
         route: "/empty",
         disabled: false,
         separator: false,
@@ -65,38 +65,6 @@
         disabled: false,
         separator: false,
       },
-      // {
-      //   icon: "mdi-soccer",
-      //   text: "examples",
-      //   name: "examples",
-      //   route: "/examples",
-      //   disabled: false,
-      //   separator: false,
-      // },
-      // {
-      //   icon: "mdi-grid",
-      //   text: "gridDemo",
-      //   name: "gridDemo",
-      //   route: "/grid",
-      //   disabled: false,
-      //   separator: false,
-      // },
-      // {
-      //   icon: "mdi-account",
-      //   text: "account",
-      //   name: "account",
-      //   route: "/account",
-      //   disabled: false,
-      //   separator: false,
-      // },
-      // {
-      //   icon: "mdi-information",
-      //   text: "about",
-      //   name: "about",
-      //   route: "/about",
-      //   disabled: false,
-      //   separator: false,
-      // },
       {
         icon: "mdi-lifebuoy",
         text: "x-help",
@@ -112,7 +80,7 @@
 <template>
   <div class="q-pa-md">
     <q-layout view="hHh LpR fFf">
-      <!-- Menu bar -->
+      <!-- 1. Menu bar: -->
       <q-header
         v-model="appStore.showMenuBar"
         class="bg-primary text-white text-left"
@@ -127,8 +95,9 @@
             round
             @click="appStore.showLeftDrawer = !appStore.showLeftDrawer"
           />
-          <q-toolbar-title
+          <!-- <q-toolbar-title
             class="my-title"
+            :shrink="true"
             style="cursor: pointer"
             @click="router.push({ path: '/' })"
           >
@@ -136,7 +105,20 @@
               <img src="./assets/Jedlik_small.png" />
             </q-avatar>
             Jedlik
-          </q-toolbar-title>
+          </q-toolbar-title> -->
+          <template v-for="(menuItem, index) in menuItems()" :key="index">
+            <q-btn
+              clickable
+              :disable="menuItem.disabled"
+              flat
+              :icon="menuItem.icon"
+              :label="menuItem.text"
+              no-caps
+              :to="menuItem.route"
+            />
+          </template>
+          <q-toolbar-title class="my-title" />
+
           <q-btn flat icon="mdi-theme-light-dark" @click="$q.dark.toggle" />
           <q-btn
             dense
@@ -148,19 +130,18 @@
         </q-toolbar>
       </q-header>
 
-      <!-- Left drawer -->
+      <!-- 2. Left drawer: -->
       <q-drawer
         v-model="appStore.showLeftDrawer"
         bordered
         :breakpoint="500"
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-        show-if-above
         :width="200"
       >
         <q-scroll-area class="fit">
           <!-- routes: -->
           <q-list>
-            <template v-for="(menuItem, index) in leftMenuItems()" :key="index">
+            <template v-for="(menuItem, index) in menuItems()" :key="index">
               <q-item clickable :disable="menuItem.disabled" :to="menuItem.route">
                 <q-item-section avatar>
                   <q-icon :name="menuItem.icon" />
@@ -176,13 +157,12 @@
         </q-scroll-area>
       </q-drawer>
 
-      <!--Right drawer -->
+      <!-- 3. Right drawer: -->
       <q-drawer
         v-model="appStore.showRightDrawer"
         bordered
         :breakpoint="500"
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-        show-if-above
         side="right"
         :width="200"
       >
@@ -205,6 +185,7 @@
         </q-scroll-area>
       </q-drawer>
 
+      <!-- 4. Taskbar: -->
       <q-footer v-model="appStore.showTaskBar" elevated reveal>
         <q-toolbar>
           <q-toolbar-title class="text-center my-title">
@@ -213,6 +194,7 @@
         </q-toolbar>
       </q-footer>
 
+      <!-- 5. Main content (pages): -->
       <q-page-container id="container">
         <router-view v-slot="{ Component }">
           <transition name="fade">

@@ -30,10 +30,10 @@
     })
       .onOk(() => {
         storeN.editById();
-        router.push({ name: "xcard" });
+        router.push("/xcard");
       })
       .onCancel(() => {
-        // router.push({ name: "xcard" });
+        // router.push("/xcard");
       });
   }
 </script>

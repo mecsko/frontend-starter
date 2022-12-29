@@ -28,10 +28,10 @@
     })
       .onOk(() => {
         storeN.create();
-        router.push({ name: "xcard" });
+        router.push("/xcard");
       })
       .onCancel(() => {
-        // router.push({ name: "xcard" });
+        // router.push("/xcard");
       });
   }
 

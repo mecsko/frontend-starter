@@ -11,12 +11,13 @@
 
   function edit(id: number) {
     storeN.data.id = id;
-    router.push({ name: "xedit" });
+    router.push("/xedit");
   }
 </script>
 
 <template>
   <q-page class="q-pa-md">
+    <q-btn color="red" @click="router.push('/xnew')">New document</q-btn>
     <div class="row">
       <div v-for="e in storeN.dataN" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
         <q-card class="q-ma-md">
