@@ -1,15 +1,12 @@
 // If you change the settings you will need to restart the ESLint server or VSCode
-module.exports = {
-  semi: true,
-  tabWidth: 2,
-  htmlWhitespaceSensitivity: "ignore",
-  useTabs: false,
-  singleQuote: false,
-  trailingComma: "es5",
-  printWidth: 100,
-  endOfLine: "auto",
-  arrowParens: "always",
-  vueIndentScriptAndStyle: true,
-  bracketSameLine: false,
-  vueIndentScriptAndStyle: true
-};
+export const semi = true;
+export const tabWidth = 2;
+export const htmlWhitespaceSensitivity = "ignore";
+export const useTabs = false;
+export const singleQuote = false;
+export const trailingComma = "es5";
+export const printWidth = 100;
+export const endOfLine = "auto";
+export const arrowParens = "always";
+export const vueIndentScriptAndStyle = true;
+export const bracketSameLine = false;

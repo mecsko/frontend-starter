@@ -1,7 +1,7 @@
 <!-- Material Design Icons: https://materialdesignicons.com/ -->
 
 <script setup lang="ts">
-  import router from "src/router";
+  // import router from "src/router";
   import { useAppStore } from "./store/appStore";
   // import { onMounted } from "vue";
 
