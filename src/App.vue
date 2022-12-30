@@ -99,7 +99,7 @@
             class="my-title"
             :shrink="true"
             style="cursor: pointer"
-            @click="router.push({ path: '/' })"
+            @click="router.push('/')"
           >
             <q-avatar>
               <img src="./assets/Jedlik_small.png" />

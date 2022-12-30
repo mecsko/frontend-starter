@@ -10,7 +10,7 @@
 
   onMounted(() => {
     if (storeN.data.id === undefined) {
-      router.push({ name: "xcard" });
+      router.push("/xcard");
     } else {
       store1.getAll();
       storeN.getById();

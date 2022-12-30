@@ -33,7 +33,7 @@
         storeN.data = {};
       })
       .onCancel(() => {
-        // router.push({ name: "xcard" });
+        // router.push("/xcard");
       });
   }
 
@@ -55,7 +55,7 @@
         showEditDialog.value = false;
       })
       .onCancel(() => {
-        // router.push({ name: "xcard" });
+        // router.push("/xcard");
       });
   }
 </script>

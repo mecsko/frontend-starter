@@ -159,16 +159,6 @@
       "boolField": true,
       "priceField": 26950000,
       "imgField": "http://elit.jedlik.eu/nits/hahu/19.jpg"
-    },
-    {
-      "dateField": "2022-03-29",
-      "imgField": "http://elit.jedlik.eu/nits/hahu/01.jpg",
-      "boolField": false,
-      "categoryId": 2,
-      "titleField": "qwerwe",
-      "descField": "werwerwe",
-      "priceField": "23423",
-      "id": 20
     }
   ],
   "categories": [

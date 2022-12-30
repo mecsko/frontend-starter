@@ -151,7 +151,7 @@ export const useStoreN = defineStore({
                 message: `New document with id=${res.data.id} has been saved successfully!`,
                 color: "positive",
               });
-              // router.push({ name: "page_name" });
+              // router.push("/page_path");
             }
           })
           .catch((error) => {
