@@ -67,7 +67,7 @@
       },
       {
         icon: "mdi-lifebuoy",
-        text: "x-help",
+        text: "xHelp",
         name: "xhelp",
         route: "/xhelp",
         disabled: false,
