@@ -83,7 +83,8 @@
       <!-- 1. Menu bar: -->
       <q-header
         v-model="appStore.showMenuBar"
-        class="bg-primary text-white text-left"
+        class="text-left bg-primary"
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-blue-5'"
         elevated
         reveal
       >
@@ -135,11 +136,10 @@
         v-model="appStore.showLeftDrawer"
         bordered
         :breakpoint="500"
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+        :class="$q.dark.isActive ? 'bg-grey-8' : 'bg-blue-1'"
         :width="200"
       >
         <q-scroll-area class="fit">
-          <!-- routes: -->
           <q-list>
             <template v-for="(menuItem, index) in menuItems()" :key="index">
               <q-item clickable :disable="menuItem.disabled" :to="menuItem.route">
@@ -162,12 +162,11 @@
         v-model="appStore.showRightDrawer"
         bordered
         :breakpoint="500"
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+        :class="$q.dark.isActive ? 'bg-grey-8' : 'bg-blue-1'"
         side="right"
         :width="200"
       >
         <q-scroll-area class="fit">
-          <!-- routes: -->
           <q-list>
             <template v-for="(menuItem, index) in rightMenuItems()" :key="index">
               <q-item clickable :disable="menuItem.disabled" :to="menuItem.route">
@@ -186,7 +185,12 @@
       </q-drawer>
 
       <!-- 4. Taskbar: -->
-      <q-footer v-model="appStore.showTaskBar" elevated reveal>
+      <q-footer
+        v-model="appStore.showTaskBar"
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-blue-5'"
+        elevated
+        reveal
+      >
         <q-toolbar>
           <q-toolbar-title class="text-center my-title">
             Jedlik frontend template 2023

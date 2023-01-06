@@ -87,7 +87,10 @@
       </div>
     </div>
     <q-dialog v-model="showEditDialog" persistent>
-      <div class="row full-width justify-center bg-white q-pa-sm">
+      <div
+        class="row full-width justify-center q-pa-sm"
+        :class="$q.dark.isActive ? 'bg-black' : 'bg-white'"
+      >
         <div class="col-xs-12 q-gutter-md">
           <q-form @reset="cancelEdit" @submit="submitEdit">
             <h5 class="text-center q-mt-sm q-mb-none">
