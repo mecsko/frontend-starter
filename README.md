@@ -9,7 +9,7 @@ Volar provides a feature called "Takeover Mode" to improve performance. In takeo
 1. Disable built-in TypeScript extension:
 - Run Extensions: Show Built-in Extensions command
 - Find "TypeScript and JavaScript Language Features", right click and select: Disable (Workspace)
-2. Reload VSCode
+2. Reload VSCode (F1 -> Reload Window)
 
 
 ## Used technologies
