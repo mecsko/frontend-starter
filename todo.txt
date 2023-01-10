@@ -13,3 +13,13 @@
    - src/routes.ts,
    - src/store/appStore.ts,
    - src/pages/x*.vue állományok törlése
+
+
+Nyomkövetés:
+1. Indítsad el a fordítást (Ctrl-Shift-B, vagy npm run dev)
+2. Zárjad be a megjelenő böngészőablakot
+3. Helyezd el a töréspontot/töréspontokat a forrásban
+4. F5 -el indítsad el a nyomkövetést
+5. A megjelenő böngészőablakban "tevékenykedj" úgy, hogy a breakpoint-ra kerüljön a vezérlés
+6. Vizsgáld meg a változók aktuális értékeit, figyeld meg a végrehajtásra kerülő utasításokat (F10, F11)
+7. Folytasd a nyomkövetést: F5, F10, F11, stb. (lsd. VS Code - Run menüben a funkciókat)
