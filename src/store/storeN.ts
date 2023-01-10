@@ -29,7 +29,7 @@ interface IFields {
 interface IState {
   dataN: Array<IFields>; // store documents (records) after get method(s)
   data: IFields; // temporary object for create, edit and delete method
-  dataOld: IFields; // temporary object for patch method (store data here before edit)
+  dataOld: IFields; // temporary object for patch method (save data here before edit to check changes later)
 }
 
 function ShowErrorWithNotify(error: any): void {

@@ -92,7 +92,7 @@
         :class="$q.dark.isActive ? 'bg-black' : 'bg-white'"
       >
         <div class="col-xs-12 q-gutter-md">
-          <q-form @reset="cancelEdit" @submit="submitEdit">
+          <q-form @reset="cancelEdit()" @submit="submitEdit()">
             <h5 class="text-center q-mt-sm q-mb-none">
               Edit advertisement ({{ Object.keys(storeN.data).length }})
             </h5>

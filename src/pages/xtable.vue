@@ -85,7 +85,7 @@
           color="red"
           label="Delete selected record"
           no-caps
-          @click="deleteRecord"
+          @click="deleteRecord()"
         />
       </div>
     </div>
