@@ -97,25 +97,25 @@ export const useStoreN = defineStore({
             message: "Nothing changed!",
             color: "negative",
           });
-          process.exit(0);
+        } else {
+          Loading.show();
+          $axios
+            .patch(`api/advertisements/${this.data.id}`, diff)
+            .then((res) => {
+              Loading.hide();
+              if (res && res.data) {
+                this.data = {};
+                this.getAll();
+                Notify.create({
+                  message: `Document with id=${res.data.id} has been edited successfully!`,
+                  color: "positive",
+                });
+              }
+            })
+            .catch((error) => {
+              ShowErrorWithNotify(error);
+            });
         }
-        Loading.show();
-        $axios
-          .patch(`api/advertisements/${this.data.id}`, diff)
-          .then((res) => {
-            Loading.hide();
-            if (res && res.data) {
-              this.data = {};
-              this.getAll();
-              Notify.create({
-                message: `Document with id=${res.data.id} has been edited successfully!`,
-                color: "positive",
-              });
-            }
-          })
-          .catch((error) => {
-            ShowErrorWithNotify(error);
-          });
       }
     },
     async deleteById(): Promise<void> {
