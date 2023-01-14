@@ -10,6 +10,7 @@ Notify.setDefaults({
   actions: [{ icon: "close", color: "white" }],
 });
 
+// you can remove the IFields interface and use the "any" type instead, but you loose the intellisens feature
 interface IFields {
   id?: number; // PK
   categoryId?: number; // FK
@@ -28,8 +29,8 @@ interface IFields {
 
 interface IState {
   dataN: Array<IFields>; // store documents (records) after get method(s)
-  data: IFields; // temporary object for create, edit and delete method
-  dataOld: IFields; // temporary object for patch method (save data here before edit to check changes later)
+  data: IFields; // temporary object for create, edit and delete methods
+  dataOld: IFields; // temporary object for edit (patch) method (save data here before edit to check changes later)
 }
 
 function ShowErrorWithNotify(error: any): void {
@@ -85,6 +86,7 @@ export const useStoreN = defineStore({
     async editById(): Promise<void> {
       if (this.data && this.data.id) {
         const diff: any = {};
+        // the diff object only stores changed fields:
         Object.keys(this.data).forEach((k, i) => {
           const newValue = Object.values(this.data)[i];
           const oldValue = Object.values(this.dataOld)[i];

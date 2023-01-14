@@ -9,6 +9,7 @@ Notify.setDefaults({
   actions: [{ icon: "close", color: "white" }],
 });
 
+// you can remove the IFields interface and use the "any" type instead, but you loose the intellisens feature
 interface IFields {
   id?: number;
   categoryNameField?: string;
