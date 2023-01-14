@@ -55,7 +55,7 @@ export const useStoreN = defineStore({
       Loading.show();
       this.dataN = [];
       $axios
-        .get("api/advertisements2")
+        .get("api/advertisements")
         .then((res) => {
           Loading.hide();
           if (res && res.data) {
