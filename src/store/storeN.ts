@@ -35,7 +35,13 @@ interface IState {
 
 function ShowErrorWithNotify(error: any): void {
   Loading.hide();
-  let msg = `Error on N-side: ${error.response.status} ${error.response.statusText}`;
+  let msg = "Error on N-side:";
+  if (error.response.status) {
+    msg += ` ${error.response.status}`;
+  }
+  if (error.response.statusText) {
+    msg += ` ${error.response.statusText}`;
+  }
   if (error.response.data) {
     msg += ` - ${error.response.data}`;
   }
