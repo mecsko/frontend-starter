@@ -1,5 +1,5 @@
 {
-  "/advertisements2": "/advertisements?_expand=category",
-  "/api/advertisements2": "/advertisements?_expand=category",
+  "/advertisements": "/advertisements?_expand=category",
+  "/api/advertisements": "/advertisements?_expand=category",
   "/api/*": "/$1"
 }
