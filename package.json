@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.15.10",
-    "axios": "^1.2.5",
+    "axios": "^1.2.6",
     "pinia": "^2.0.29",
     "quasar": "^2.11.5",
-    "tslib": "^2.4.1",
+    "tslib": "^2.5.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
@@ -24,7 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "@vitejs/plugin-vue": "^4.0.0",
-    "eslint": "^8.32.0",
+    "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.9.0",
