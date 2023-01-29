@@ -22,6 +22,10 @@ interface IState {
 function ShowErrorWithNotify(error: any): void {
   Loading.hide();
   let msg = "Error on 1-side";
+
+  // The optional chaining (?.) operator accesses an object's property or calls a function.
+  // If the object accessed or function called is undefined or null,
+  // it returns undefined instead of throwing an error.
   if (error?.response?.data?.status) {
     msg += ` (${error.response.data.status}):`;
   } else if (error?.response?.status) {
@@ -59,7 +63,7 @@ export const useStore1 = defineStore({
         .get("api/categories")
         .then((res) => {
           Loading.hide();
-          if (res && res.data) {
+          if (res?.data) {
             this.data1 = res.data;
           }
         })

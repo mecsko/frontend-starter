@@ -1,48 +1,25 @@
 <script setup lang="ts">
+  import { useAppStore } from "../store/appStore";
   import { useStore1 } from "../store/store1";
   import { useStoreN } from "../store/storeN";
   import { Dialog } from "quasar";
-  import { onMounted, ref } from "vue";
+  // import { onMounted } from "vue";
+  // import router from "src/router";
 
-  const store1 = useStore1();
+  const appStore = useAppStore();
   const storeN = useStoreN();
+  const store1 = useStore1();
 
-  const showEditDialog = ref(false);
-
-  onMounted(() => {
-    storeN.getAll();
-  });
-
-  function editDocument(id: number) {
-    storeN.data.id = id;
+  function ShowDialog() {
     store1.getAll();
     storeN.getById();
-    showEditDialog.value = true;
   }
 
-  function deleteDocument(id: number) {
-    storeN.data.id = id;
-    Dialog.create({
-      title: "Confirm",
-      message: "Would you like to delete?",
-      cancel: true,
-      persistent: true,
-    })
-      .onOk(() => {
-        storeN.deleteById();
-        storeN.data = {};
-      })
-      .onCancel(() => {
-        // router.push("/xcard");
-      });
-  }
-
-  function cancelEdit() {
+  function HideDialog() {
     storeN.data = {};
-    showEditDialog.value = false;
   }
 
-  function submitEdit() {
+  function Submit() {
     Dialog.create({
       title: "Confirm",
       message: "Would you like to save changes?",
@@ -51,48 +28,28 @@
     })
       .onOk(() => {
         storeN.editById();
-        storeN.data = {};
-        showEditDialog.value = false;
+        // router.push("/xcard");
       })
       .onCancel(() => {
         // router.push("/xcard");
       });
   }
+
+  function Reset() {
+    storeN.data = { ...storeN.dataOld };
+  }
+
+  function Close() {
+    appStore.showEditDialog = false;
+  }
 </script>
 
 <template>
-  <q-page class="q-pa-md">
-    <div class="row">
-      <div v-for="e in storeN.dataN" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
-        <q-card class="q-ma-md">
-          <q-img :src="e.imgField">
-            <div class="text-h7 absolute-top text-right">
-              {{ e.category!.categoryNameField }} -
-              {{ new Date(e.dateField!).toLocaleDateString() }}
-            </div>
-            <div class="text-h7 absolute-bottom text-left">
-              {{ e.titleField }}
-            </div>
-          </q-img>
-          <q-card-section>
-            <q-badge v-if="e.boolField" color="green" label="yes" outline />
-            <q-badge v-else color="red" label="no" outline />
-            {{ e.descField }}
-          </q-card-section>
-          <q-card-actions align="center">
-            <q-btn color="blue" no-caps @click="editDocument(e.id!)">Edit</q-btn>
-            <q-btn color="red" no-caps @click="deleteDocument(e.id!)">Delete</q-btn>
-          </q-card-actions>
-        </q-card>
-      </div>
-    </div>
-    <q-dialog v-model="showEditDialog" persistent>
-      <div
-        class="row full-width justify-center q-pa-sm"
-        :class="$q.dark.isActive ? 'bg-black' : 'bg-white'"
-      >
-        <div class="col-xs-12 q-gutter-md">
-          <q-form @reset="cancelEdit()" @submit="submitEdit()">
+  <q-dialog v-model="appStore.showEditDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
+    <q-card class="q-pa-md" style="width: 60vw; min-width: 300px">
+      <q-form @reset="Reset()" @submit="Submit()">
+        <div class="row">
+          <div v-if="storeN.data" class="col-12 q-gutter-md">
             <h5 class="text-center q-mt-sm q-mb-none">
               Edit advertisement ({{ Object.keys(storeN.data).length }})
             </h5>
@@ -150,14 +107,15 @@
             />
             <div class="row justify-center">
               <q-btn class="q-mr-md" color="green" label="Save" no-caps type="submit" />
-              <q-btn class="q-mr-md" color="red" label="Cancel" no-caps type="reset" />
+              <q-btn class="q-mr-md" color="red" label="Reset" no-caps type="reset" />
+              <q-btn class="q-mr-md" color="blue" label="Close" no-caps @click="Close()" />
             </div>
             <!-- {{ storeN.data }} -->
-          </q-form>
+          </div>
         </div>
-      </div>
-    </q-dialog>
-  </q-page>
+      </q-form>
+    </q-card>
+  </q-dialog>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

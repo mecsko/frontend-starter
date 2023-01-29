@@ -5,6 +5,8 @@ interface IState {
   showRightDrawer: boolean;
   showMenuBar: boolean;
   showTaskBar: boolean;
+  showEditDialog: boolean;
+  showNewDialog: boolean;
 }
 
 export const useAppStore = defineStore({
@@ -14,5 +16,7 @@ export const useAppStore = defineStore({
     showRightDrawer: true,
     showMenuBar: true,
     showTaskBar: true,
+    showEditDialog: false,
+    showNewDialog: false,
   }),
 });

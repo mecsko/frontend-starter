@@ -36,6 +36,10 @@ interface IState {
 function ShowErrorWithNotify(error: any): void {
   Loading.hide();
   let msg = "Error on N-side";
+
+  // The optional chaining (?.) operator accesses an object's property or calls a function.
+  // If the object accessed or function called is undefined or null,
+  // it returns undefined instead of throwing an error.
   if (error?.response?.data?.status) {
     msg += ` (${error.response.data.status}):`;
   } else if (error?.response?.status) {
@@ -75,7 +79,7 @@ export const useStoreN = defineStore({
         .get("api/advertisements")
         .then((res) => {
           Loading.hide();
-          if (res && res.data) {
+          if (res?.data) {
             this.dataN = res.data;
           }
         })
@@ -90,7 +94,7 @@ export const useStoreN = defineStore({
           .get(`api/advertisements/${this.data.id}`)
           .then((res) => {
             Loading.hide();
-            if (res && res.data) {
+            if (res?.data) {
               this.data = res.data;
               Object.assign(this.dataOld, this.data);
             }
@@ -101,7 +105,7 @@ export const useStoreN = defineStore({
       }
     },
     async editById(): Promise<void> {
-      if (this.data && this.data.id) {
+      if (this.data?.id) {
         const diff: any = {};
         // the diff object only stores changed fields:
         Object.keys(this.data).forEach((k, i) => {
@@ -120,9 +124,8 @@ export const useStoreN = defineStore({
             .patch(`api/advertisements/${this.data.id}`, diff)
             .then((res) => {
               Loading.hide();
-              if (res && res.data) {
-                this.data = {};
-                this.getAll();
+              if (res?.data?.id) {
+                this.getAll(); // refresh dataN with read all data again from backend
                 Notify.create({
                   message: `Document with id=${res.data.id} has been edited successfully!`,
                   color: "positive",
@@ -135,16 +138,16 @@ export const useStoreN = defineStore({
         }
       }
     },
-    async deleteById(): Promise<void> {
-      if (this.data && this.data.id) {
+    async deleteById(id: any): Promise<void> {
+      if (id) {
         Loading.show();
-        const id = this.data.id;
         $axios
-          .delete(`api/advertisements/${this.data.id}`)
+          .delete(`api/advertisements/${id}`)
           .then(() => {
             Loading.hide();
-            this.getAll();
-            this.data = {};
+            // this.getAll(); // refresh dataN with read all data again from backend
+            // or delete edited document in dataN:
+            this.dataN = this.dataN.filter((X) => X.id != id);
             Notify.create({
               message: `Document with id=${id} has been deleted successfully!`,
               color: "positive",
@@ -163,9 +166,9 @@ export const useStoreN = defineStore({
           .post("api/advertisements", this.data)
           .then((res) => {
             Loading.hide();
-            if (res && res.data) {
-              // this.data = {};
-              this.getAll();
+            if (res?.data) {
+              Loading.hide();
+              this.getAll(); // refresh dataN with read all data again from backend
               Notify.create({
                 message: `New document with id=${res.data.id} has been saved successfully!`,
                 color: "positive",

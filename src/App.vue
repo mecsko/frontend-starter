@@ -50,14 +50,6 @@
         separator: false,
       },
       {
-        icon: "mdi-card-account-details-outline",
-        text: "xCard2",
-        name: "xcard2",
-        route: "/xcard2",
-        disabled: false,
-        separator: false,
-      },
-      {
         icon: "mdi-view-carousel-outline",
         text: "xCarousel",
         name: "xcard",
