@@ -21,16 +21,27 @@ interface IState {
 
 function ShowErrorWithNotify(error: any): void {
   Loading.hide();
-  let msg = "Error on 1-side:";
-  if (error.response.status) {
-    msg += ` ${error.response.status}`;
+  let msg = "Error on 1-side";
+  if (error?.response?.data?.status) {
+    msg += ` (${error.response.data.status}):`;
+  } else if (error?.response?.status) {
+    msg += ` (${error.response.status}):`;
+  } else {
+    msg += ":";
   }
-  if (error.response.statusText) {
-    msg += ` ${error.response.statusText}`;
+
+  if (error?.response?.data?.message) {
+    msg += ` (${error.response.data.message}):`;
+  } else if (error?.response?.message) {
+    msg += ` ${error.response.message}`;
+  } else if (error?.request && error?.message) {
+    msg += ` No response(${error.message})`; // if no response
+  } else if (error?.message) {
+    msg += ` Message(${error.message})`;
+  } else {
+    msg += " Unknow error message";
   }
-  if (error.response.data) {
-    msg += ` - ${error.response.data}`;
-  }
+
   Notify.create({ message: msg, color: "negative" });
 }
 
