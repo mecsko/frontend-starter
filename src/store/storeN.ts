@@ -88,7 +88,7 @@ export const useStoreN = defineStore({
         });
     },
     async getById(): Promise<void> {
-      if (this.data && this.data.id) {
+      if (this.data?.id) {
         Loading.show();
         $axios
           .get(`api/advertisements/${this.data.id}`)
@@ -145,9 +145,7 @@ export const useStoreN = defineStore({
           .delete(`api/advertisements/${id}`)
           .then(() => {
             Loading.hide();
-            // this.getAll(); // refresh dataN with read all data again from backend
-            // or delete edited document in dataN:
-            this.dataN = this.dataN.filter((X) => X.id != id);
+            this.getAll(); // refresh dataN with read all data again from backend
             Notify.create({
               message: `Document with id=${id} has been deleted successfully!`,
               color: "positive",

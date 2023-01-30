@@ -43,7 +43,7 @@
     <div class="row">
       <div v-for="e in storeN.dataN" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
         <q-card class="q-ma-md">
-          <q-img src="../assets/Jedlik_big.png">
+          <q-img :src="e.imgField">
             <div class="text-h7 absolute-top text-right">
               {{ e.category!.categoryNameField }} -
               {{ new Date(e.dateField!).toLocaleDateString() }}
