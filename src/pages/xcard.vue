@@ -30,7 +30,8 @@
       persistent: true,
     })
       .onOk(() => {
-        storeN.deleteById(id);
+        storeN.data = { id: id };
+        storeN.deleteById();
       })
       .onCancel(() => {
         // router.push("/xcard");

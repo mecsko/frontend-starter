@@ -49,7 +49,7 @@ function ShowErrorWithNotify(error: any): void {
   }
 
   if (error?.response?.data?.message) {
-    msg += ` (${error.response.data.message}):`;
+    msg += ` ${error.response.data.message}`;
   } else if (error?.response?.message) {
     msg += ` ${error.response.message}`;
   } else if (error?.request && error?.message) {
@@ -138,16 +138,16 @@ export const useStoreN = defineStore({
         }
       }
     },
-    async deleteById(id: any): Promise<void> {
-      if (id) {
+    async deleteById(): Promise<void> {
+      if (this.data?.id) {
         Loading.show();
         $axios
-          .delete(`api/advertisements/${id}`)
+          .delete(`api/advertisements/${this.data.id}`)
           .then(() => {
             Loading.hide();
             this.getAll(); // refresh dataN with read all data again from backend
             Notify.create({
-              message: `Document with id=${id} has been deleted successfully!`,
+              message: `Document with id=${this.data.id} has been deleted successfully!`,
               color: "positive",
             });
           })

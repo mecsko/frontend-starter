@@ -35,7 +35,7 @@ function ShowErrorWithNotify(error: any): void {
   }
 
   if (error?.response?.data?.message) {
-    msg += ` (${error.response.data.message}):`;
+    msg += ` ${error.response.data.message}`;
   } else if (error?.response?.message) {
     msg += ` ${error.response.message}`;
   } else if (error?.request && error?.message) {
