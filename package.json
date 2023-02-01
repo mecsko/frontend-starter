@@ -13,6 +13,7 @@
     "@quasar/extras": "^1.15.10",
     "axios": "^1.2.6",
     "pinia": "^2.0.29",
+    "pinia-plugin-persist": "^1.0.0",
     "quasar": "^2.11.5",
     "tslib": "^2.5.0",
     "vue": "^3.2.45",

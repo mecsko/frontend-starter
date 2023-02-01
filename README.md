@@ -46,6 +46,10 @@ With [Quasar](https://quasar.dev/) you can build effortlessly build high-perform
 ### Pinia
 [Pinia](https://pinia.vuejs.org/) is a store library for Vue, it allows you to share a state across components/pages.
 
+
+## Pinia Pugin Persist
+[Persist](https://github.com/Seb-L/pinia-plugin-persist) VueJs Pinia state data in sessionStorage or other storages, heavilly influenced by vuex-persistedstate.
+
 ### Vite
 [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects. It consists a dev server that provides rich feature enhancements over native ES modules, for example extremely fast Hot Module Replacement (HMR).
 
