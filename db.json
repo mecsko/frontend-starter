@@ -11,16 +11,6 @@
       "imgField": "https://nitslaszlo.github.io/jedlik-frontend-starter/01.jpg"
     },
     {
-      "id": 2,
-      "categoryId": 1,
-      "titleField": "BELARUS MTZ 82",
-      "descField": "MTZ 82 traktor, eredeti piros. 1988évj. Piros rendszámmal, 1év műszakival. Feljavított sebességváltóval. Könnyű kormányzás. Azonnal munkára fogható állapotban. A traktorhoz tartozik külön homlokrakodó is ami külön is eladó esetleg. Cserébe 80 vagy 550 traktor érdekel. Szállítás is megoldható.",
-      "dateField": "2022-01-02",
-      "boolField": true,
-      "priceField": 195000,
-      "imgField": "https://nitslaszlo.github.io/jedlik-frontend-starter/02.jpg "
-    },
-    {
       "id": 3,
       "categoryId": 4,
       "titleField": "BMW K 1600 B Grand America",

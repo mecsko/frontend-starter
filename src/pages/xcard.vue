@@ -1,25 +1,23 @@
 <script setup lang="ts">
-  import { useAppStore } from "../store/appStore";
-  import { useStoreN } from "../store/storeN";
+  import { useStore } from "../store/store";
   import { Dialog } from "quasar";
   import { onMounted } from "vue";
   import xEdit from "../components/xedit.vue";
   import xNew from "../components/xnew.vue";
 
-  const appStore = useAppStore();
-  const storeN = useStoreN();
+  const store = useStore();
 
   onMounted(() => {
-    storeN.getAll();
+    store.manyGetAll();
   });
 
   function editDocument(id: number | undefined) {
-    storeN.data.id = id;
-    appStore.showEditDialog = true;
+    store.many.document.id = id;
+    store.app.showEditDialog = true;
   }
 
   function newDocument() {
-    appStore.showNewDialog = true;
+    store.app.showNewDialog = true;
   }
 
   function deleteDocument(id: number | undefined) {
@@ -30,8 +28,8 @@
       persistent: true,
     })
       .onOk(() => {
-        storeN.data = { id: id };
-        storeN.deleteById();
+        store.many.document = { id: id };
+        store.manyDeleteById();
       })
       .onCancel(() => {
         // router.push("/xcard");
@@ -42,7 +40,7 @@
 <template>
   <q-page class="q-pa-md">
     <div class="row">
-      <div v-for="e in storeN.dataN" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
+      <div v-for="e in store.many.documents" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
         <q-card class="q-ma-md">
           <q-img :src="e.imgField">
             <div class="text-h7 absolute-top text-right">

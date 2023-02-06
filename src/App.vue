@@ -2,10 +2,10 @@
 
 <script setup lang="ts">
   // import router from "src/router";
-  import { useAppStore } from "./store/appStore";
+  import { useStore } from "./store/store";
   // import { onMounted } from "vue";
 
-  const appStore = useAppStore();
+  const store = useStore();
 
   // onMounted(() => {
   // });
@@ -74,7 +74,7 @@
     <q-layout view="hHh LpR fFf">
       <!-- 1. Menu bar: -->
       <q-header
-        v-model="appStore.showMenuBar"
+        v-model="store.app.showMenuBar"
         class="text-left bg-primary"
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-blue-5'"
         elevated
@@ -86,7 +86,7 @@
             flat
             icon="mdi-menu"
             round
-            @click="appStore.showLeftDrawer = !appStore.showLeftDrawer"
+            @click="store.app.showLeftDrawer = !store.app.showLeftDrawer"
           />
           <!-- <q-toolbar-title
             class="my-title"
@@ -118,14 +118,14 @@
             flat
             icon="mdi-menu"
             round
-            @click="appStore.showRightDrawer = !appStore.showRightDrawer"
+            @click="store.app.showRightDrawer = !store.app.showRightDrawer"
           />
         </q-toolbar>
       </q-header>
 
       <!-- 2. Left drawer: -->
       <q-drawer
-        v-model="appStore.showLeftDrawer"
+        v-model="store.app.showLeftDrawer"
         bordered
         :breakpoint="500"
         :class="$q.dark.isActive ? 'bg-grey-8' : 'bg-blue-1'"
@@ -151,7 +151,7 @@
 
       <!-- 3. Right drawer: -->
       <q-drawer
-        v-model="appStore.showRightDrawer"
+        v-model="store.app.showRightDrawer"
         bordered
         :breakpoint="500"
         :class="$q.dark.isActive ? 'bg-grey-8' : 'bg-blue-1'"
@@ -178,7 +178,7 @@
 
       <!-- 4. Taskbar: -->
       <q-footer
-        v-model="appStore.showTaskBar"
+        v-model="store.app.showTaskBar"
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-blue-5'"
         elevated
         reveal

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-  import { useStoreN } from "src/store/storeN";
+  import { useStore } from "../store/store";
   import { onMounted, ref } from "vue";
 
-  const storeN = useStoreN();
+  const store = useStore();
 
-  const slide = ref(storeN.dataN[0].id);
+  const slide = ref(store.many.documents[0].id);
   const autoplay = ref(2000);
 
   onMounted(() => {
-    storeN.getAll();
+    store.manyGetAll();
   });
 </script>
 
@@ -28,7 +28,7 @@
       @mouseleave="autoplay = 2000"
     >
       <q-carousel-slide
-        v-for="e in storeN.dataN"
+        v-for="e in store.many.documents"
         :key="e.id"
         class="column flex-top"
         :img-src="e.imgField"

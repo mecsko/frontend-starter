@@ -29,49 +29,59 @@ export interface IOther {
 }
 
 export interface IApp {
+  showLeftDrawer: boolean;
+  showRightDrawer: boolean;
   showMenuBar: boolean;
+  showTaskBar: boolean;
+  showEditDialog: boolean;
+  showNewDialog: boolean;
 }
 
 interface IState {
-  dataOne: {
+  one: {
     // For handle CRUD operations:
-    document: IOne; // use for CUD
-    documentOld: IOne; // use for U with PATCH
-    documents: IOne[]; // use for R
+    document: IOne; // use for only CUD
+    documentOld: IOne; // use for only U with PATCH and restore data
+    documents: IOne[]; // use for only R
   };
-  dataMany: {
+  many: {
     document: IMany;
     documentOld: IMany;
     documents: IMany[];
   };
-  dataOther: {
+  other: {
     document: IOther;
     documentOld: IOther;
     documents: IOther[];
   };
-  dataApp: IApp;
+  app: IApp;
 }
 
 export const useStore = defineStore({
-  id: "store1",
+  id: "store",
   state: (): IState => ({
-    dataOne: {
+    one: {
       document: {},
       documentOld: {},
       documents: [],
     },
-    dataMany: {
+    many: {
       document: {},
       documentOld: {},
       documents: [],
     },
-    dataOther: {
+    other: {
       document: {},
       documentOld: {},
       documents: [],
     },
-    dataApp: {
+    app: {
       showMenuBar: true,
+      showLeftDrawer: true,
+      showRightDrawer: true,
+      showTaskBar: true,
+      showEditDialog: false,
+      showNewDialog: false,
     },
   }),
   getters: {},
@@ -79,13 +89,13 @@ export const useStore = defineStore({
     // ============== ONE-SIDE actions ===========================================
     async oneGetAll(): Promise<void> {
       Loading.show();
-      this.dataOne.documents = [];
+      this.one.documents = [];
       $axios
         .get("api/categories")
         .then((res) => {
           Loading.hide();
           if (res?.data) {
-            this.dataOne.documents = res.data;
+            this.one.documents = res.data;
           }
         })
         .catch((error) => {
@@ -96,13 +106,13 @@ export const useStore = defineStore({
     // ============== MANY-SIDE actions ===========================================
     async manyGetAll(): Promise<void> {
       Loading.show();
-      this.dataMany.documents = [];
+      this.many.documents = [];
       $axios
         .get("api/advertisements")
         .then((res) => {
           Loading.hide();
           if (res?.data) {
-            this.dataMany.documents = res.data;
+            this.many.documents = res.data;
           }
         })
         .catch((error) => {
@@ -110,16 +120,16 @@ export const useStore = defineStore({
         });
     },
     async manyGetById(): Promise<void> {
-      if (this.dataMany?.document?.id) {
+      if (this.many?.document?.id) {
         Loading.show();
         $axios
-          .get(`api/advertisements/${this.dataMany.document.id}`)
+          .get(`api/advertisements/${this.many.document.id}`)
           .then((res) => {
             Loading.hide();
             if (res?.data) {
-              this.dataMany.documents[0] = res.data;
+              this.many.document = res.data;
               // store startig data to PATCH method:
-              Object.assign(this.dataMany.documentOld, this.dataMany.documents[0]);
+              Object.assign(this.many.documentOld, this.many.document);
             }
           })
           .catch((error) => {
@@ -128,12 +138,12 @@ export const useStore = defineStore({
       }
     },
     async manyEditById(): Promise<void> {
-      if (this.dataMany?.document?.id) {
+      if (this.many?.document?.id) {
         const diff: any = {};
         // the diff object only stores changed fields:
-        Object.keys(this.dataMany.document).forEach((k, i) => {
-          const newValue = Object.values(this.dataMany.document)[i];
-          const oldValue = Object.values(this.dataMany.documentOld)[i];
+        Object.keys(this.many.document).forEach((k, i) => {
+          const newValue = Object.values(this.many.document)[i];
+          const oldValue = Object.values(this.many.documentOld)[i];
           if (newValue != oldValue) diff[k] = newValue;
         });
         if (Object.keys(diff).length == 0) {
@@ -144,7 +154,7 @@ export const useStore = defineStore({
         } else {
           Loading.show();
           $axios
-            .patch(`api/advertisements/${this.dataMany.document.id}`, diff)
+            .patch(`api/advertisements/${this.many.document.id}`, diff)
             .then((res) => {
               Loading.hide();
               if (res?.data?.id) {
@@ -162,15 +172,15 @@ export const useStore = defineStore({
       }
     },
     async manyDeleteById(): Promise<void> {
-      if (this.dataMany?.document?.id) {
+      if (this.many?.document?.id) {
         Loading.show();
         $axios
-          .delete(`api/advertisements/${this.dataMany.document.id}`)
+          .delete(`api/advertisements/${this.many.document.id}`)
           .then(() => {
             Loading.hide();
             this.manyGetAll(); // refresh dataN with read all data again from backend
             Notify.create({
-              message: `Document with id=${this.dataMany.document.id} has been deleted successfully!`,
+              message: `Document with id=${this.many.document.id} has been deleted successfully!`,
               color: "positive",
             });
           })
@@ -180,10 +190,10 @@ export const useStore = defineStore({
       }
     },
     async manyCreate(): Promise<void> {
-      if (this.dataMany?.document) {
+      if (this.many?.document) {
         Loading.show();
         $axios
-          .post("api/advertisements", this.dataMany?.document)
+          .post("api/advertisements", this.many.document)
           .then((res) => {
             Loading.hide();
             if (res?.data) {
@@ -203,10 +213,10 @@ export const useStore = defineStore({
     },
     // ============== OTHERSIDE actions ===========================================
     async otherCreate(): Promise<void> {
-      if (this.dataOther?.document) {
+      if (this.other?.document) {
         Loading.show();
         $axios
-          .post("api/xyz", this.dataOther.document)
+          .post("api/xyz", this.other.document)
           .then((res) => {
             Loading.hide();
             if (res?.data) {

@@ -1,18 +1,19 @@
 <script setup lang="ts">
-  import { useStoreN } from "../store/storeN";
+  import { useStore } from "../store/store";
   import { onMounted, ref } from "vue";
   import { QTableColumn } from "quasar";
-  const storeN = useStoreN();
+  const store = useStore();
 
   onMounted(() => {
-    storeN.getAll();
+    store.manyGetAll();
   });
 
   // Selected row(s) -> selection="single" or selection="multiple"
   const selected = ref<any>([]);
 
   function deleteRecord(): void {
-    storeN.deleteById(selected.value[0].id);
+    store.many.document = { id: selected.value[0].id };
+    store.manyDeleteById();
     selected.value = [];
   }
 
@@ -58,7 +59,7 @@
         v-model:selected="selected"
         :columns="columns"
         dense
-        :rows="storeN.dataN"
+        :rows="store.many.documents"
         selection="single"
         title="Advertisements"
         wrap-cells

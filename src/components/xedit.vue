@@ -1,22 +1,18 @@
 <script setup lang="ts">
-  import { useAppStore } from "../store/appStore";
-  import { useStore1 } from "../store/store1";
-  import { useStoreN } from "../store/storeN";
+  import { useStore } from "../store/store";
   import { Dialog } from "quasar";
   // import { onMounted } from "vue";
   // import router from "src/router";
 
-  const appStore = useAppStore();
-  const storeN = useStoreN();
-  const store1 = useStore1();
+  const store = useStore();
 
   function ShowDialog() {
-    store1.getAll();
-    storeN.getById();
+    store.oneGetAll();
+    store.manyGetById();
   }
 
   function HideDialog() {
-    storeN.data = {};
+    store.many.document = {};
   }
 
   function Submit() {
@@ -27,7 +23,7 @@
       persistent: true,
     })
       .onOk(() => {
-        storeN.editById();
+        store.manyEditById();
         // router.push("/xcard");
       })
       .onCancel(() => {
@@ -36,25 +32,25 @@
   }
 
   function Reset() {
-    storeN.data = { ...storeN.dataOld };
+    store.many.document = { ...store.many.documentOld };
   }
 
   function Close() {
-    appStore.showEditDialog = false;
+    store.app.showEditDialog = false;
   }
 </script>
 
 <template>
-  <q-dialog v-model="appStore.showEditDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
+  <q-dialog v-model="store.app.showEditDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
     <q-card class="q-pa-md" style="width: 60vw; min-width: 300px">
       <q-form @reset="Reset()" @submit="Submit()">
         <div class="row">
-          <div v-if="storeN.data" class="col-12 q-gutter-md">
+          <div v-if="store?.many?.document?.id" class="col-12 q-gutter-md">
             <h5 class="text-center q-mt-sm q-mb-none">
-              Edit advertisement ({{ Object.keys(storeN.data).length }})
+              Edit advertisement ({{ Object.keys(store.many.document).length }})
             </h5>
             <q-select
-              v-model="storeN.data.categoryId"
+              v-model="store.many.document.categoryId"
               clearable
               emit-value
               filled
@@ -62,25 +58,25 @@
               map-options
               option-label="categoryNameField"
               option-value="id"
-              :options="store1.data1"
+              :options="store.one.documents"
               :rules="[(v) => v != null || 'Please choose one!']"
             />
             <q-input
-              v-model="storeN.data.titleField"
+              v-model="store.many.document.titleField"
               filled
               label="titleField"
               :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
               type="text"
             />
             <q-input
-              v-model="storeN.data.descField"
+              v-model="store.many.document.descField"
               filled
               label="descField"
               :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
               type="textarea"
             />
             <q-input
-              v-model="storeN.data.dateField"
+              v-model="store.many.document.dateField"
               clearable
               filled
               label="dateField"
@@ -88,17 +84,17 @@
               type="date"
             />
             <div class="row justify-end q-mb-md">
-              <q-checkbox v-model="storeN.data.boolField" filled label="boolField" />
+              <q-checkbox v-model="store.many.document.boolField" filled label="boolField" />
             </div>
             <q-input
-              v-model="storeN.data.priceField"
+              v-model="store.many.document.priceField"
               filled
               label="priceField"
               :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
               type="number"
             />
             <q-input
-              v-model="storeN.data.imgField"
+              v-model="store.many.document.imgField"
               clearable
               filled
               label="imgField"

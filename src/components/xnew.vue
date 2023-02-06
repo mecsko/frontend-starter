@@ -1,21 +1,17 @@
 <script setup lang="ts">
-  import { useAppStore } from "../store/appStore";
-  import { useStore1 } from "../store/store1";
-  import { useStoreN } from "../store/storeN";
+  import { useStore } from "../store/store";
   import { date, Dialog } from "quasar";
   //   import router from "src/router";
 
-  const appStore = useAppStore();
-  const storeN = useStoreN();
-  const store1 = useStore1();
+  const store = useStore();
 
   function ShowDialog() {
-    store1.getAll();
+    store.oneGetAll();
     Reset(); // set default settings
   }
 
   function HideDialog() {
-    storeN.data = {};
+    store.many.document = {};
   }
 
   function Submit() {
@@ -26,8 +22,8 @@
       persistent: true,
     })
       .onOk(() => {
-        storeN.create();
-        appStore.showNewDialog = false;
+        store.manyCreate();
+        store.app.showNewDialog = false;
         // router.push("/xcard");
       })
       .onCancel(() => {
@@ -36,7 +32,7 @@
   }
 
   function Reset() {
-    storeN.data = {
+    store.many.document = {
       dateField: date.formatDate(new Date(), "YYYY-MM-DD"),
       imgField: "http://elit.jedlik.eu/nits/hahu/01.jpg",
       boolField: false,
@@ -44,19 +40,19 @@
   }
 
   function Close() {
-    appStore.showNewDialog = false;
+    store.app.showNewDialog = false;
   }
 </script>
 
 <template>
-  <q-dialog v-model="appStore.showNewDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
+  <q-dialog v-model="store.app.showNewDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
     <q-card class="q-pa-md" style="width: 60vw; min-width: 300px">
       <q-form @reset="Reset()" @submit="Submit()">
         <h5 class="text-center q-mt-sm q-mb-none">
-          Add new advertisement ({{ Object.keys(storeN.data).length }})
+          Add new advertisement ({{ Object.keys(store.many.document).length }})
         </h5>
         <q-select
-          v-model="storeN.data.categoryId"
+          v-model="store.many.document.categoryId"
           clearable
           emit-value
           filled
@@ -64,25 +60,25 @@
           map-options
           option-label="categoryNameField"
           option-value="id"
-          :options="store1.data1"
+          :options="store.one.documents"
           :rules="[(v) => v != null || 'Please choose one!']"
         />
         <q-input
-          v-model="storeN.data.titleField"
+          v-model="store.many.document.titleField"
           filled
           label="titleField"
           :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
           type="text"
         />
         <q-input
-          v-model="storeN.data.descField"
+          v-model="store.many.document.descField"
           filled
           label="descField"
           :rules="[(v) => (v != null && v != '') || 'Please fill in!']"
           type="textarea"
         />
         <q-input
-          v-model="storeN.data.dateField"
+          v-model="store.many.document.dateField"
           clearable
           filled
           label="dateField"
@@ -90,10 +86,10 @@
           type="date"
         />
         <div class="row justify-end q-mb-md">
-          <q-checkbox v-model="storeN.data.boolField" filled label="boolField" />
+          <q-checkbox v-model="store.many.document.boolField" filled label="boolField" />
         </div>
         <q-input
-          v-model="storeN.data.priceField"
+          v-model="store.many.document.priceField"
           filled
           label="priceField"
           mask="currency"
@@ -102,7 +98,7 @@
           type="number"
         />
         <q-input
-          v-model="storeN.data.imgField"
+          v-model="store.many.document.imgField"
           clearable
           filled
           label="imgField"

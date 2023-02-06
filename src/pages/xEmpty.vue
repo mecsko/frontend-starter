@@ -1,16 +1,12 @@
 <script setup lang="ts">
-  //   import { useStore1 } from "../store/store1";
-  //   import { useStoreN } from "../store/storeN";
+  //   import { useStore } from "../store/store";
   //   import { date } from "quasar";
   //   import router from "src/router";
 
-  //   const storeN = useStoreN();
-  //   const store1 = useStore1();
+  //   const store = useStore();
 
   //   onMounted(() => {
-  //     store1.getAll();
-  //     storeN.getAll();
-  //     storeN.data = {};
+  //     store.manyGetAll();
   //   });
 </script>
 
