@@ -8,7 +8,7 @@
   const autoplay = ref(2000);
 
   onMounted(() => {
-    store.manyGetAll();
+    store.many_GetAll();
   });
 </script>
 

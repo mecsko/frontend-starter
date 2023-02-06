@@ -82,6 +82,12 @@
         target="_blank"
       />
       <q-btn
+        href="https://quasar.dev/vue-components/slider"
+        icon="mdi-timeline-outline"
+        label="Slider"
+        target="_blank"
+      />
+      <q-btn
         href="https://fonts.google.com/icons"
         icon="mdi-material-design"
         label="Material Icons Library (Google)"

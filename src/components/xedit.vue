@@ -7,8 +7,8 @@
   const store = useStore();
 
   function ShowDialog() {
-    store.oneGetAll();
-    store.manyGetById();
+    store.one_GetAll(); // for q-selet data
+    store.many_GetById(); // Before show dialog set "store.many.document.id" field!!!
   }
 
   function HideDialog() {
@@ -23,7 +23,7 @@
       persistent: true,
     })
       .onOk(() => {
-        store.manyEditById();
+        store.many_EditById();
         // router.push("/xcard");
       })
       .onCancel(() => {
@@ -46,9 +46,7 @@
       <q-form @reset="Reset()" @submit="Submit()">
         <div class="row">
           <div v-if="store?.many?.document?.id" class="col-12 q-gutter-md">
-            <h5 class="text-center q-mt-sm q-mb-none">
-              Edit advertisement ({{ Object.keys(store.many.document).length }})
-            </h5>
+            <h5 class="text-center q-mt-sm q-mb-none">Edit advertisement</h5>
             <q-select
               v-model="store.many.document.categoryId"
               clearable

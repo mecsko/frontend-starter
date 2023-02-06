@@ -5,7 +5,7 @@
   const store = useStore();
 
   onMounted(() => {
-    store.manyGetAll();
+    store.many_GetAll();
   });
 
   // Selected row(s) -> selection="single" or selection="multiple"
@@ -13,8 +13,16 @@
 
   function deleteRecord(): void {
     store.many.document = { id: selected.value[0].id };
-    store.manyDeleteById();
+    store.many_DeleteById();
     selected.value = [];
+  }
+
+  function filterUpdate() {
+    if (store.app.filter.length > 0) {
+      store.many_Filter();
+    } else {
+      store.many_GetAll();
+    }
   }
 
   // Columns def template:
@@ -55,6 +63,14 @@
 <template>
   <q-page>
     <div class="q-pa-md">
+      <q-input
+        v-model="store.app.filter"
+        dense
+        filled
+        label="Filter"
+        type="text"
+        @update:model-value="filterUpdate()"
+      />
       <q-table
         v-model:selected="selected"
         :columns="columns"

@@ -6,7 +6,7 @@
   const store = useStore();
 
   function ShowDialog() {
-    store.oneGetAll();
+    store.one_GetAll();
     Reset(); // set default settings
   }
 
@@ -22,7 +22,7 @@
       persistent: true,
     })
       .onOk(() => {
-        store.manyCreate();
+        store.many_Create();
         store.app.showNewDialog = false;
         // router.push("/xcard");
       })
@@ -48,9 +48,7 @@
   <q-dialog v-model="store.app.showNewDialog" persistent @hide="HideDialog()" @show="ShowDialog()">
     <q-card class="q-pa-md" style="width: 60vw; min-width: 300px">
       <q-form @reset="Reset()" @submit="Submit()">
-        <h5 class="text-center q-mt-sm q-mb-none">
-          Add new advertisement ({{ Object.keys(store.many.document).length }})
-        </h5>
+        <h5 class="text-center q-mt-sm q-mb-none">Add new advertisement</h5>
         <q-select
           v-model="store.many.document.categoryId"
           clearable
@@ -106,11 +104,12 @@
           type="url"
         />
         <div class="row justify-center">
-          <q-btn class="q-mr-md" color="green" label="Submit" no-caps type="submit" />
+          <q-btn class="q-mr-md" color="green" label="Save" no-caps type="submit" />
           <q-btn class="q-mr-md" color="red" label="Reset" no-caps type="reset" />
           <q-btn class="q-mr-md" color="blue" label="Close" no-caps @click="Close()" />
         </div>
-        <!-- {{ storeN.data }} -->
+        <!-- for testing: -->
+        {{ store.many.document }}
       </q-form>
     </q-card>
   </q-dialog>

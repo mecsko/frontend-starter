@@ -8,7 +8,7 @@
   const store = useStore();
 
   onMounted(() => {
-    store.manyGetAll();
+    store.many_GetAll();
   });
 
   function editDocument(id: number | undefined) {
@@ -29,16 +29,32 @@
     })
       .onOk(() => {
         store.many.document = { id: id };
-        store.manyDeleteById();
+        store.many_DeleteById();
       })
       .onCancel(() => {
         // router.push("/xcard");
       });
   }
+
+  function filterUpdate() {
+    if (store.app.filter.length > 0) {
+      store.many_Filter();
+    } else {
+      store.many_GetAll();
+    }
+  }
 </script>
 
 <template>
   <q-page class="q-pa-md">
+    <q-input
+      v-model="store.app.filter"
+      dense
+      filled
+      label="Filter"
+      type="text"
+      @update:model-value="filterUpdate()"
+    />
     <div class="row">
       <div v-for="e in store.many.documents" :key="e.id" class="col-sm-12 col-md-6 col-lg-4">
         <q-card class="q-ma-md">

@@ -14,11 +14,11 @@ Volar provides a feature called "Takeover Mode" to improve performance. In takeo
 ## Debug your application
 1. Start build process with Ctrl-Shift-B or "npm run dev" command
 2. Close the borwser if it appears
-3. Open the default browser in debug mode with F5 key
+3. Start debug mode with F5 key (open debug browser)
 4. Open the page where you want to debug the code
 5. Set some breakpoints before lines in the page's TS code
 6. In the browser cause the process to reach the breakpoint(S)
-7. Examine the variables, continue the execution step by step (F10, F11, for next breakpont: F5)
+7. Examine the variables, continue the execution step by step (F10, F11, or for next breakpont: F5)
 
 
 ## Used technologies
