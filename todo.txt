@@ -1,17 +1,18 @@
 1. GitHub repo klónozása, átnevezése
     https://github.com/nitslaszlo/jedlik-frontend-starter
-2. Források, backend szerver másolása, backend szerver indítása
+2. Források, backend szerver másolása, backend szerver indítása, ha a szerver lokális gépen fut
 3. Sablon megnyitása, Quasar csomagverziók frissítése (ha kéri a feladat), Node.js csomagok telepítése
-4. Axios backend szerver beállítása - Base URL és port: src/store/axios.instance.ts
-5. "1"-oldali store IFields interface és axios URL-ek aktualizálása: src/store/store1.ts
-6. "N"-oldali store IFields interface, URL-ek és actions metódusok aktualizálása: src/store/storeN.ts
-7. Nyitó oldal elkészítése: src/pages/index.vue
-8. Komponensek (oldalak) elkészítése: src/pages mappában ("save as" indulással)
-9. Route-ok elkészítése az új oldalakhoz: src/routes.ts 
-10. "Takarítás-törlés": oldalak, menük, route-ok, állapotsor ki-be kapcsolása, stb.:
+4. Axios backend szerver beállítása - Base URL és port(ha adott): src/store/axios.instance.ts
+5. "1"-oldali "IOne" interface és axios URL-ek, akciómetótusok aktualizálása: src/store/store.ts
+6. "N"-oldali "IMany" interface, URL-ek és akciómetódusok aktualizálása: src/store/store.ts
+7. Egyéb táblához (ha van) "IOther" interface, URL-ek és akciómetódusok készítése: src/store/store.ts
+8. Nyitó oldal elkészítése (források beillesztése): src/pages/index.vue
+9. Komponensek (oldalak) elkészítése (források beillesztése): src/pages mappában ("save as" indulással)
+10. Route-ok elkészítése az új oldalakhoz: src/routes.ts 
+11. "Takarítás-törlés": oldalak, menük, route-ok, állapotsor ki-be kapcsolása, stb.:
    - src/App.vue,
    - src/routes.ts,
-   - src/store/appStore.ts,
+   - src/store/store.ts,
    - src/pages/x*.vue állományok törlése
 
 
