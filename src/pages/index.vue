@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <q-page>
     <div class="column flex-center" style="min-height: inherit">
@@ -6,8 +8,6 @@
     </div>
   </q-page>
 </template>
-
-<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
   h2 {
