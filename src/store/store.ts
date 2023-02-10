@@ -259,10 +259,17 @@ export const useStore = defineStore({
       }
     },
   },
-  // all data is stored in browser session store:
+  // all "state" data is stored in browser session store:
   persist: {
     enabled: true,
   },
+  // persist: {
+  //   enabled: true,
+  //   strategies: [
+  //     { storage: sessionStorage, paths: ["one", "many"] },
+  //     { storage: localStorage, paths: ["app"] },
+  //   ],
+  // },
 });
 
 Notify.setDefaults({
