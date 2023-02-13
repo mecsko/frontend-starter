@@ -1,16 +1,16 @@
 <script setup lang="ts"></script>
 
 <template>
-  <q-page>
-    <div class="column flex-center" style="min-height: inherit">
-      <img alt="Jedlik logo" class="q-ma-md" src="src/assets/Jedlik_big.png" />
-      <h2>Jedlik Ányos Technikum - Győr</h2>
-    </div>
-  </q-page>
+	<q-page>
+		<div class="column flex-center" style="min-height: inherit">
+			<img alt="Jedlik logo" class="q-ma-md" src="Jedlik_big.png" />
+			<h2>Jedlik Ányos Technikum - Győr</h2>
+		</div>
+	</q-page>
 </template>
 
 <style lang="scss" scoped>
-  h2 {
-    font-size: 3vw;
-  }
+	h2 {
+		font-size: 3vw;
+	}
 </style>

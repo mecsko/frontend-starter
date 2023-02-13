@@ -1,41 +1,30 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "types": [
-      "node",
-      "vite/client",
-      "pinia-plugin-persist"
-    ],
-    "paths": {
-      "src/*": [
-        "src/*"
-      ],
-      "/src/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "src/*"
-      ]
-    }
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.vue"
-  ]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"useDefineForClassFields": true,
+		"forceConsistentCasingInFileNames": true,
+		"importsNotUsedAsValues": "error",
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"strict": true,
+		"jsx": "preserve",
+		"sourceMap": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"lib": ["esnext", "dom"],
+		"types": ["node", "vite/client", "pinia-plugin-persist"],
+		"typeRoots": ["node_modules/@types", "src/types"],
+		"baseUrl": ".",
+		"paths": {
+			"@api/*": ["src/api/*"],
+			"@components/*": ["src/components/*"],
+			"@interfaces/*": ["src/interfaces/*"],
+			"@modules/*": ["src/modules/*"],
+			"@pages/*": ["src/pages/*"],
+			"@stores/*": ["src/stores/*"],
+			"@utils/*": ["src/utils/*"]
+		}
+	},
+	"include": ["src", "vite.config.ts"]
 }

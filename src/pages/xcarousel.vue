@@ -1,49 +1,49 @@
 <script setup lang="ts">
-  import { useStore } from "../store/store";
-  import { onMounted, ref } from "vue";
+	import { onMounted, ref } from "vue";
+	import { useManyStore } from "@stores/many";
 
-  const store = useStore();
+	const manyStore = useManyStore();
 
-  const slide = ref(store.many.documents[0].id);
-  const autoplay = ref(2000);
+	const slide = ref<number | null>(null);
+	const autoplay = ref(2000);
 
-  onMounted(() => {
-    store.many_GetAll();
-  });
+	onMounted(async () => {
+		await manyStore.many_GetAll();
+		if (manyStore.documents) {
+			slide.value = manyStore.documents[0].id;
+		}
+	});
 </script>
 
 <template>
-  <q-page class="q-pa-xl">
-    <q-carousel
-      v-model="slide"
-      animated
-      arrows
-      :autoplay="autoplay"
-      class="bg-primary text-white shadow-15 rounded-borders"
-      infinite
-      navigation
-      transition-next="scale"
-      transition-prev="scale"
-      @mouseenter="autoplay = 0"
-      @mouseleave="autoplay = 2000"
-    >
-      <q-carousel-slide
-        v-for="e in store.many.documents"
-        :key="e.id"
-        class="column flex-top"
-        :img-src="e.imgField"
-        :name="e.id"
-      >
-        <div
-          class="text-center rounded-borders q-pa-xs q-ma-xl"
-          style="background-color: rgba(10, 10, 10, 0.3)"
-        >
-          <h3>{{ e.titleField }}</h3>
-          {{ e.descField }}
-        </div>
-      </q-carousel-slide>
-    </q-carousel>
-  </q-page>
+	<q-page class="q-pa-xl">
+		<q-carousel
+			v-model="slide"
+			animated
+			arrows
+			:autoplay="autoplay"
+			class="bg-primary text-white shadow-15 rounded-borders"
+			infinite
+			navigation
+			transition-next="scale"
+			transition-prev="scale"
+			@mouseenter="autoplay = 0"
+			@mouseleave="autoplay = 2000"
+		>
+			<q-carousel-slide
+				v-for="e in manyStore.documents"
+				:key="e.id"
+				class="column flex-top"
+				:img-src="e.imgField"
+				:name="e.id"
+			>
+				<div class="text-center rounded-borders q-pa-xs q-ma-xl" style="background-color: rgba(10, 10, 10, 0.3)">
+					<h3>{{ e.titleField }}</h3>
+					{{ e.descField }}
+				</div>
+			</q-carousel-slide>
+		</q-carousel>
+	</q-page>
 </template>
 
 <style scoped></style>

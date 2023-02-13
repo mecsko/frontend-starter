@@ -1,17 +1,17 @@
 <script setup lang="ts">
-  //   import { useStore } from "../store/store";
-  //   import { date } from "quasar";
-  //   import router from "src/router";
+	//   import { date } from "quasar";
+	//   import { useStore } from "@store/store";
+	//   import router from "@modules/router";
 
-  //   const store = useStore();
+	//   const store = useStore();
 
-  //   onMounted(() => {
-  //     store.manyGetAll();
-  //   });
+	//   onMounted(() => {
+	//     store.manyGetAll();
+	//   });
 </script>
 
 <template>
-  <q-page>empty</q-page>
+	<q-page>empty</q-page>
 </template>
 
 <style lang="scss" scoped></style>

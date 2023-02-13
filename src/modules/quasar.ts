@@ -1,19 +1,13 @@
-// Import icon libraries
+import { Quasar, QuasarPluginOptions, Notify, Dialog, Loading } from "quasar";
 import "@quasar/extras/material-icons/material-icons.css";
 import "@quasar/extras/mdi-v6/mdi-v6.css";
-// Import Quasar css
 import "quasar/src/css/index.sass";
+import type { App } from "vue";
 
-import { Quasar, Notify, Dialog, Loading } from "quasar";
-
-const config = {
-  plugins: { Notify, Dialog, Loading }, // import Quasar plugins and add here
-  build: {
-    devtool: "source-map",
-  },
-  cssAddon: true,
+const config: Partial<QuasarPluginOptions> = {
+	plugins: { Notify, Dialog, Loading },
 };
 
-export const install = (app: any) => {
-  app.use(Quasar, config);
+export const install = (app: App) => {
+	app.use(Quasar, config);
 };
